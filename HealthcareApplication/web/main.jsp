@@ -13,6 +13,7 @@
     <body>
         <div class="content" style="padding: 15px;">
             <h1>Welcome User!</h1>
+            <li><a href="FindDoctorServlet">Find Doctor</a></li>
         </div>
         <%@ include file="/footer.jsp" %>
     </body>
