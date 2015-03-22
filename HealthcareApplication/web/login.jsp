@@ -27,7 +27,6 @@
                 <input type="password" size="45" name="password"><br/>
                 <br/><br/>
                 <input type="submit" value="Login" class="button login"><br/><br/>
-                <a href="register.jsp">Create an account</a>
                 <%
                     if (errorMessage != null) {
                 %>
