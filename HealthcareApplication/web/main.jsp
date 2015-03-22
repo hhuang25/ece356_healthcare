@@ -11,9 +11,10 @@
 <!DOCTYPE html>
 <html>
     <body>
-        <div style="padding: 15px;">
+        <div class="content" style="padding: 15px;">
             <h1>Welcome User!</h1>
         </div>
+        <%@ include file="/footer.jsp" %>
     </body>
 </html>
     

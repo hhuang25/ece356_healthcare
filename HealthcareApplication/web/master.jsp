@@ -18,19 +18,19 @@
         <div class="header">
             <div class="logo"></div>
             <span class="title"><a href="index.jsp">Huang Healthcare</a></span>
-            <span class="login">
+            <span style="float: right;">
                 <%
                     if (user != null) {
                 %>
                     <span style="color: #696969"><%=user%></span>
-                    <span class="dot"></span>
-                    <a href="LogoutServlet">Logout</a>
+                    <div class="dot"></div>
+                    <button class="inverted-button header" onclick="LogoutServlet">Logout</button>
                 <%
                     } else {
                 %>
-                    <a href="register.jsp">Register</a>
-                    <span class="dot"></span>
-                    <a href="login.jsp">Login</a>
+                    <button class="inverted-button header" onclick="window.location='register.jsp';">Register</button>
+                    <div class="dot"></div>
+                    <button class="inverted-button header" onclick="window.location='login.jsp';">Login</button>
                 <%
                     }
                 %>

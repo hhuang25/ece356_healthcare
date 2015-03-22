@@ -18,7 +18,8 @@
     %>
     
     <body>
-        <div style="padding: 20px;">
+        <div class="content" style="padding: 0 20px 20x 20px; margin-left: 20px;">
+            <h2>Login to Huang Healthcare</h2>
             <form action="AuthenticationServlet" method=post>
                 <p>Username</p>
                 <input type="text" name="username" value="<%=username%>" size="45">
@@ -36,5 +37,6 @@
                 %>
             </form>
         </div>
+        <%@ include file="/footer.jsp" %>
     </body>
 </html>

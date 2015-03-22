@@ -9,23 +9,27 @@
 <!DOCTYPE html>
 <html>
     <body>
-        <div class="passage">
-            <h2>Find the best doctor for you</h2>
-            <p>Your all-in-one solution for finding the right doctor in your area</p>
+        <div class="content">
+            <div class="passage">
+                <h1>Find the best doctor for you</h1>
+                <p>Your all-in-one solution for finding the right doctor in your area</p>
+                <div class="steth horizontal-center"></div>
+            </div>
+            <div class="horizontal-center features">
+                <h2 style="color: #00CC99;">Features</h2>
+                <ul class="checkmark">
+                    <li>&nbsp;&nbsp;Find Doctors of various Specializations</li>
+                    <li>&nbsp;&nbsp;Read comprehensive Doctor Profiles</li>
+                    <li>&nbsp;&nbsp;Connect with other Patients in a Social Network</li>
+                    <li>&nbsp;&nbsp;Read Reviews on Doctors written by other Patients</li>
+                </ul>
+                <p>... and more</p>
+            </div>
+            <div style="text-align: center; margin-top: 20px;">
+                <button class="button sign-up" onclick="window.location='register.jsp';">Sign Up</button>
+            </div>
+            <br/><br/>
         </div>
-        <div class="horizontal-center features">
-            <h2 style="color: #00CC99;">Features</h2>
-            <ul class="checkmark">
-                <li>Find Doctors of various Specializations</li>
-                <li>Read comprehensive Doctor Profiles</li>
-                <li>Connect with other Patients in a Social Network</li>
-                <li>Read Reviews on Doctors written by other Patients</li>
-            </ul>
-            <p>... and more</p>
-        </div>
-        <div style="text-align: center; margin-top: 20px;">
-            <button class="button sign-up" onclick="window.location='register.jsp';">Sign Up</button>
-        </div>
-        <br/><br/>
+        <%@ include file="/footer.jsp" %>
     </body>
 </html>
