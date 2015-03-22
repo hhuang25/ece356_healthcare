@@ -94,12 +94,12 @@ public class AuthenticationServlet extends HttpServlet {
                     rs = userType.executeQuery();
 
                     if (rs.next()) {
-                        Patient patient = Factory.CreatePatient(rs, user_id);
+                        Patient patient = Factory.CreatePatient(rs);
                         session.setAttribute("PatientSession", patient);  
                     }
                 }
                 else {
-                    Doctor doctor = Factory.CreateDoctor(rs, user_id);
+                    Doctor doctor = Factory.CreateDoctor(rs);
                     session.setAttribute("DoctorSession", doctor);
                 }
                 
@@ -117,7 +117,11 @@ public class AuthenticationServlet extends HttpServlet {
             if (authenticate != null) {
                 authenticate.close();
             }
-            
+                        
+            if (userType != null) {
+                userType.close();
+            }
+
             if (con != null) {
                 con.close();
             }

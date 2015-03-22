@@ -30,7 +30,7 @@ public class Factory {
         return user;
     }
     
-    public static Doctor CreateDoctor(ResultSet rs, int user_id) {
+    public static Doctor CreateDoctor(ResultSet rs) {
         Doctor doctor = new Doctor();
         try {
             doctor.setId(rs.getInt("id"));
@@ -39,7 +39,7 @@ public class Factory {
             doctor.setLastName(rs.getString("last_name"));
             doctor.setGender(rs.getString("gender"));
             doctor.setYearLicenseObtained(rs.getInt("year_license_obtained"));
-            doctor.setUserId(user_id);
+            doctor.setUserId(rs.getInt("user_id"));
         }
         catch (SQLException e) {
             System.out.println(e);
@@ -48,7 +48,7 @@ public class Factory {
         return doctor;
     }
     
-    public static Patient CreatePatient(ResultSet rs, int user_id) {
+    public static Patient CreatePatient(ResultSet rs) {
         Patient patient = new Patient();
         try {
             patient.setId(rs.getInt("id"));
@@ -56,7 +56,7 @@ public class Factory {
             patient.setMiddleName(rs.getString("middle_name"));
             patient.setLastName(rs.getString("last_name"));
             patient.setGender(rs.getString("gender"));
-            patient.setUserId(user_id);
+            patient.setUserId(rs.getInt("user_id"));
             patient.setRegionId(rs.getInt("region_id"));
         }
         catch (SQLException e) {

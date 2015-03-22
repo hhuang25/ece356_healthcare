@@ -19,7 +19,7 @@ import java.sql.*;
 
 /**
  *
- * @author Ajanthan Asogamoorth
+ * @author Ajanthan Asogamoorthy
  */
 @WebServlet(name = "FindDoctorServlet", urlPatterns = {"/FindDoctorServlet"})
 public class FindDoctorServlet extends HttpServlet {
