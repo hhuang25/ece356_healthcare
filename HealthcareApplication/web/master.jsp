@@ -28,8 +28,6 @@
                 <%
                     } else {
                 %>
-                    <button class="inverted-button header" onclick="window.location='register.jsp';">Register</button>
-                    <div class="dot"></div>
                     <button class="inverted-button header" onclick="window.location='login.jsp';">Login</button>
                 <%
                     }
