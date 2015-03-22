@@ -33,8 +33,8 @@ public class DBTestServlet extends HttpServlet {
         //PrintWriter out = response.getWriter();
         String url = "";
         try {
-            UserDBAO.testConnection();
-            
+            //UserDBAO.testConnection();
+            UserDBAO.testPool();
             url = "/dbtest.jsp";
         } catch(Exception ex){
             request.setAttribute("exception", ex);

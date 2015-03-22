@@ -11,12 +11,14 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import util.DbConnectionUtil;
 
 /**
  *
@@ -49,9 +51,7 @@ public class AuthenticationServlet extends HttpServlet {
 
         try
         {
-            Class.forName("com.mysql.jdbc.Driver");
-            String connection = UserDBAO.url + UserDBAO.db;
-            con = DriverManager.getConnection(connection, UserDBAO.user, UserDBAO.pwd);
+            con = DbConnectionUtil.getConnection();
             String authenticateString = "Select EXISTS (SELECT 1 FROM User WHERE alias= ? AND password = SHA2(CONCAT(salt, ?), 256) LIMIT 1);";
             authenticate = con.prepareStatement(authenticateString);
             authenticate.setString(1, username);
@@ -72,7 +72,7 @@ public class AuthenticationServlet extends HttpServlet {
                 url = "/main.jsp";
             }
         }
-        catch(ClassNotFoundException | SQLException e)
+        catch(SQLException | NamingException e)
         {
             System.out.println(e);
             String message = "Oops! Something went wrong.";
