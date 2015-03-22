@@ -6,6 +6,8 @@
 
 <%@ include file="/master.jsp" %>
 
+<% response.sendRedirect(request.getContextPath() + "/index.jsp"); %>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

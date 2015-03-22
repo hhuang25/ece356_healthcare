@@ -15,9 +15,14 @@
     </head>
     <body>
         <% Object user = session.getAttribute("UserSession"); %>
+        <% String query = "";
+           if (user != null) {
+               query = "?redirect";
+           }
+        %>
         <div class="header">
             <div class="logo"></div>
-            <span class="title"><a href="index.jsp">Huang Healthcare</a></span>
+            <span class="title"><a href="index.jsp<%=query%>">Huang Healthcare</a></span>
             <span style="float: right;">
                 <%
                     if (user != null) {
