@@ -4,7 +4,7 @@ import java.sql.*;
 
 public class UserDBAO {
     public static final String url = "jdbc:mysql://eceweb.uwaterloo.ca:3306/";
-    //public static final String url = "jdbc:mysql://eceweb.uwaterloo.ca:3306/";
+    public static final String db = "ece356db_h53huang";
     public static final String user = "user_h53huang";
     public static final String pwd = "password";
     
