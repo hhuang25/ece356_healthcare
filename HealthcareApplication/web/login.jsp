@@ -8,16 +8,13 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
     <% String errorMessage = (String)request.getAttribute("errorMessage"); %>
     <%! String username = "";%>
     <% 
         Object name = request.getAttribute("username");
         if (name != null) {
             username = (String) name;
-        } 
+        }
     %>
     
     <body>
@@ -29,7 +26,7 @@
                 <input type="password" size="45" name="password"><br/>
                 <br/><br/>
                 <input type="submit" value="Login" class="button login"><br/><br/>
-                <a href="">Create an account</a>
+                <a href="register.jsp">Create an account</a>
                 <%
                     if (errorMessage != null) {
                 %>

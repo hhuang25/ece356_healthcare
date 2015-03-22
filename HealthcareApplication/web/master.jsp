@@ -28,7 +28,7 @@
                 <%
                     } else {
                 %>
-                    <a href="DBTestServlet">Register</a>
+                    <a href="register.jsp">Register</a>
                     <span class="dot"></span>
                     <a href="login.jsp">Login</a>
                 <%

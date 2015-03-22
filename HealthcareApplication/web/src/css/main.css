@@ -62,11 +62,14 @@ span.login {
     float: right;
 }
 
+.horizontal-center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
 div.features {
     width: 450px;
     display: block;
-    margin-left: auto;
-    margin-right: auto;
     border: 1px solid #CCC;
     border-radius: 4px;
     margin-top: 40px;
@@ -102,7 +105,7 @@ div.features {
     font-size: 18px;
 }
 
-input {
+input, select {
     height: 30px;
     border: 1px solid #ccc;
     font-family: Verdana;
@@ -132,4 +135,8 @@ ul.checkmark li:before {
 .dot {
     color: #00CC99;
     font-size: 20px;
+}
+
+select {
+    width: 100%;
 }

@@ -72,7 +72,7 @@ public class AuthenticationServlet extends HttpServlet {
                 url = "/main.jsp";
             }
         }
-        catch(SQLException | NamingException e)
+        catch (SQLException | NamingException e)
         {
             System.out.println(e);
             String message = "Oops! Something went wrong.";
