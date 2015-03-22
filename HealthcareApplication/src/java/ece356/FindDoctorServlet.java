@@ -54,6 +54,7 @@ public class FindDoctorServlet extends HttpServlet {
             }
             request.setAttribute("specializations", specialization_list);
             url = "/search_doctor_form.jsp";
+            con.close();
         } catch (Exception e) {
             request.setAttribute("exception", e);
             url = "/error.jsp";

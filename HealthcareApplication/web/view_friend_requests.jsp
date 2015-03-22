@@ -22,8 +22,12 @@
             );
             for (User u : users_request_friend) {
         %>
-        <%=u.getAlias()%>
-        <%=u.getEmail()%>
+        <form method="post" action="ViewFriendRequests">
+            <%=u.getAlias()%>
+            <%=u.getEmail()%>
+            <input type="hidden" value="<%=u.getId()%>" name="user_id">
+            <input type="submit" name="Accept as Friend">
+        </form
         <%
             }
         %>
