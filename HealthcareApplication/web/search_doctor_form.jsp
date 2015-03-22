@@ -11,12 +11,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Huang Healthcare</title>
-        <link rel="shortcut icon" href="src/img/logo.ico">
-        <link rel="stylesheet" href="src/css/main.css" />
-    </head>
     <body>
         <div class="content">
             <form method="post" action="FindDoctorServlet">
