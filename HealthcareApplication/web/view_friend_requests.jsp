@@ -24,8 +24,8 @@
             <%=u.getAlias()%>
             <%=u.getEmail()%>
             <input type="hidden" value="<%=u.getId()%>" name="user_id">
-            <input type="submit" name="Accept as Friend">
-        </form
+            <input type="submit" value="Accept as Friend">
+        </form>
         <%
             }
         %>
