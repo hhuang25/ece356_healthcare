@@ -4,6 +4,9 @@
     Author     : Ajanthan Asogamoorth
 --%>
 
+<%@ include file="/master.jsp" %>
+<%@ include file="/auth.jsp" %>
+
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -15,8 +18,9 @@
         <link rel="stylesheet" href="src/css/main.css" />
     </head>
     <body>
-        <form method="post" action="FindDoctorServlet">
-            <fieldset>
+        <div class="content">
+            <form method="post" action="FindDoctorServlet">
+                <fieldset>
                 <legend> Personal Information </legend>
                 First Name: <input type="text" name="firstname">
                 Last Name: <input type="text" name="lastname">
@@ -42,46 +46,45 @@
                     <option>Yukon</option>
                     <option>Nunavut</option>
                 </select>
-            </fieldset>
-            <fieldset>
-                <legend> Address </legend>
-                Street Number: <input type="number" name="street_number" min="1">
-                Street <input type="text" name="street">
-                Postal Code <input type="text" name="postal_code">
-            </fieldset>
-            <fieldset>
-                <legend> Doctor Attributes </legend>
-                Year License Obtained: 
-                <input type="number" name="year_license_obtained" min="1800">
-                <br>
-                Specialization: 
-                <select name="specialization">
-                    <%! ArrayList<String> specializations;%>
-                    <%
-                        specializations = (ArrayList<String>) request.getAttribute("specializations");
-                        for (String specialization : specializations) {
-                    %>
-                    <option value="<%=specialization%>"><%=specialization%></option>
-                    <%
-                        }
-                    %>
-                </select>
-                <br>
-                Average Rating Threshold:
-                <input type="number" name="rating_threshold" min="1" max="5">
-                <br>
-                Friend Reviewed
-                <input type="text" name="friend_reviewed">
-                <br>
-            </fieldset>
-            <fieldset>
-                <legend> Review Characteristics </legend>
-                Keyword in Review: 
-                <input type="text" name="keyword">
-                Reviewed by Friend: 
-                <input type="checkbox" name="reviewed_by_friend">
-            </fieldset>
-            <input type="submit" value="submit_doctor_search">
-        </form>
+                <fieldset>
+                    <legend> Address </legend>
+                    Street Number: <input type="number" name="street_number" min="1">
+                    Street <input type="text" name="street">
+                    Postal Code <input type="text" name="postal_code">
+                </fieldset>
+                <fieldset>
+                    <legend> Doctor Attributes </legend>
+                    Year License Obtained: 
+                    <input type="number" name="year_license_obtained" min="1800">
+                    <br>
+                    Specialization: 
+                    <select name="specialization">
+                        <%! ArrayList<String> specializations;%>
+                        <%
+                            specializations = (ArrayList<String>) request.getAttribute("specializations");
+                            for (String specialization : specializations) {
+                        %>
+                        <option value="<%=specialization%>"><%=specialization%></option>
+                        <%
+                            }
+                        %>
+                    </select>
+                    <br>
+                    Average Rating Threshold:
+                    <input type="number" name="rating_threshold" min="1" max="5">
+                    <br>
+                    Friend Reviewed
+                    <input type="text" name="friend_reviewed">
+                    <br>
+                </fieldset>
+                <fieldset>
+                    <legend> Review Characteristics </legend>
+                    Keyword in Review: 
+                    <input type="text" name="keyword">
+                </fieldset>
+                <input type="submit" value="submit_doctor_search">
+            </form>
+        </div>
+        <%@ include file="/footer.jsp" %>
     </body>
 </html>

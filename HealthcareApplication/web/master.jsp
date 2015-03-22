@@ -14,15 +14,21 @@
         <link rel="stylesheet" href="src/css/main.css" />
     </head>
     <body>
-        <% Object user = session.getAttribute("UserSession"); %>
+        <% bean.User user = (bean.User)session.getAttribute("UserSession"); %>
+        <% String query = "";
+           if (user != null) {
+               query = "?redirect";
+           }
+        %>
         <div class="header">
             <div class="logo"></div>
-            <span class="title"><a href="index.jsp">Huang Healthcare</a></span>
+            <span class="title"><a href="index.jsp<%=query%>">Huang Healthcare</a></span>
             <span style="float: right;">
                 <%
                     if (user != null) {
+                        
                 %>
-                    <span style="color: #696969"><%=user%></span>
+                    <span style="color: #696969"><%=user.getAlias()%></span>
                     <div class="dot"></div>
                     <button class="inverted-button header" onclick="document.location.href='LogoutServlet'">Logout</button>
                 <%

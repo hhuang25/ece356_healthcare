@@ -4,11 +4,16 @@
     Author     : huangster
 --%>
 <%@ include file="/master.jsp" %>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <body>
+        <%
+            String param = request.getParameter("redirect");
+            if (param != null) {
+                response.sendRedirect(request.getContextPath() + "/main.jsp");
+            }
+        %>
         <div class="content">
             <div class="passage">
                 <h1>Find the best doctor for you</h1>

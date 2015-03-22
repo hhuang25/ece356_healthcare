@@ -5,9 +5,11 @@
  */
 package ece356;
 
+import bean.Doctor;
+import bean.Patient;
+import bean.User;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,6 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import util.DbConnectionUtil;
+import util.Factory;
 
 /**
  *
@@ -45,6 +48,7 @@ public class AuthenticationServlet extends HttpServlet {
         String url = "";
         Connection con = null;        
         PreparedStatement authenticate = null;
+        PreparedStatement userType = null;
 
         String username = request.getParameter("username");
         String password = request.getParameter("password");
@@ -52,7 +56,7 @@ public class AuthenticationServlet extends HttpServlet {
         try
         {
             con = DbConnectionUtil.getConnection();
-            String authenticateString = "Select EXISTS (SELECT 1 FROM User WHERE alias= ? AND password = SHA2(CONCAT(salt, ?), 256) LIMIT 1);";
+            String authenticateString = "Select EXISTS (SELECT 1 FROM User WHERE alias= ? AND password = SHA2(CONCAT(salt, ?), 256) LIMIT 1);"; 
             authenticate = con.prepareStatement(authenticateString);
             authenticate.setString(1, username);
             authenticate.setString(2, password);
@@ -68,7 +72,37 @@ public class AuthenticationServlet extends HttpServlet {
             }
             else {
                 HttpSession session = request.getSession(true);
-                session.setAttribute("UserSession", username);
+                authenticateString = "SELECT * FROM User WHERE alias = ?";
+                authenticate = con.prepareStatement(authenticateString);
+                authenticate.setString(1, username);
+                rs = authenticate.executeQuery();
+                rs.next();
+
+                User user = Factory.CreateUser(rs);
+                session.setAttribute("UserSession", user);
+                
+                int user_id = rs.getInt("id");
+                String userTypeString = "SELECT * FROM Doctor WHERE user_id = ?";
+                userType = con.prepareStatement(userTypeString);
+                userType.setInt(1, user_id);
+                rs = userType.executeQuery();
+
+                if (!rs.next()) {
+                    userTypeString = "SELECT * FROM Patient WHERE user_id = ?";
+                    userType = con.prepareStatement(userTypeString);
+                    userType.setInt(1, user_id);
+                    rs = userType.executeQuery();
+
+                    if (rs.next()) {
+                        Patient patient = Factory.CreatePatient(rs, user_id);
+                        session.setAttribute("PatientSession", patient);  
+                    }
+                }
+                else {
+                    Doctor doctor = Factory.CreateDoctor(rs, user_id);
+                    session.setAttribute("DoctorSession", doctor);
+                }
+                
                 url = "/main.jsp";
             }
         }
