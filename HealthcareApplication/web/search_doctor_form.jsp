@@ -10,34 +10,39 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Huang Healthcare</title>
+        <link rel="shortcut icon" href="src/img/logo.ico">
+        <link rel="stylesheet" href="src/css/main.css" />
     </head>
     <body>
         <form method="post" action="FindDoctorServlet">
-            First Name: <input type="text" name="firstname">
-            Last Name: <input type="text" name="lastname">
-            Gender: 
-            <input type="radio" value="male"> Male
-            <input type="radio" value="female"> Female
-            <br>
-            City: <input type="text" name="city">          
-            <br>
-            Province: 
-            <select name="province"> 
-                <option>Ontario</option>
-                <option>Quebec</option>
-                <option>British Columbia</option>
-                <option>Alberta</option>
-                <option>Saskatchewan</option>
-                <option>Winnipeg</option>
-                <option>Manitoba</option>
-                <option>Nova Scotia</option>
-                <option>New Brunswick</option>
-                <option>Newfoundland and Labrador</option>
-                <option>North West Territories</option>
-                <option>Yukon</option>
-                <option>Nunavut</option>
-            </select>
+            <fieldset>
+                <legend> Personal Information </legend>
+                First Name: <input type="text" name="firstname">
+                Last Name: <input type="text" name="lastname">
+                Gender: 
+                <input type="radio" value="male"> Male
+                <input type="radio" value="female"> Female
+                <br>
+                City: <input type="text" name="city">          
+                <br>
+                Province: 
+                <select name="province"> 
+                    <option>Ontario</option>
+                    <option>Quebec</option>
+                    <option>British Columbia</option>
+                    <option>Alberta</option>
+                    <option>Saskatchewan</option>
+                    <option>Winnipeg</option>
+                    <option>Manitoba</option>
+                    <option>Nova Scotia</option>
+                    <option>New Brunswick</option>
+                    <option>Newfoundland and Labrador</option>
+                    <option>North West Territories</option>
+                    <option>Yukon</option>
+                    <option>Nunavut</option>
+                </select>
+            </fieldset>
             <fieldset>
                 <legend> Address </legend>
                 Street Number: <input type="number" name="street_number" min="1">
@@ -73,6 +78,8 @@
                 <legend> Review Characteristics </legend>
                 Keyword in Review: 
                 <input type="text" name="keyword">
+                Reviewed by Friend: 
+                <input type="checkbox" name="reviewed_by_friend">
             </fieldset>
             <input type="submit" value="submit_doctor_search">
         </form>
