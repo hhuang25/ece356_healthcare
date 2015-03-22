@@ -24,7 +24,7 @@
                 %>
                     <span style="color: #696969"><%=user%></span>
                     <div class="dot"></div>
-                    <button class="inverted-button header" onclick="LogoutServlet">Logout</button>
+                    <button class="inverted-button header" onclick="document.location.href='LogoutServlet'">Logout</button>
                 <%
                     } else {
                 %>
