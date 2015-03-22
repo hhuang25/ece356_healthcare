@@ -35,7 +35,7 @@ public class FindDoctorServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //User u = request.getSession().getAttribute("UserSession");
+        //User u = (User)request.getSession().getAttribute("UserSession");
         String url;
         Connection con;  
         Statement stmt;

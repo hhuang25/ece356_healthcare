@@ -16,6 +16,7 @@ public class Patient {
     private String lastName;
     private String gender;
     private int userId;
+    private int regionId;
 
     /**
      * @return the id
@@ -99,5 +100,19 @@ public class Patient {
      */
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+    
+    /**
+     * @return the regionId
+     */
+    public int getRegionId() {
+        return regionId;
+    }
+
+    /**
+     * @param regionId the regionId to set
+     */
+    public void setRegionId(int regionId) {
+        this.regionId = regionId;
     }
 }

@@ -1,6 +1,5 @@
 <% 
-    Object authenticated = session.getAttribute("UserSession");
-    if (authenticated == null) {
+    if (session.getAttribute("UserSession") == null) {
         response.sendRedirect(request.getContextPath() + "/login.jsp");
     }
 %>
