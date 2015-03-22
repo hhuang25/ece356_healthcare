@@ -121,6 +121,10 @@ public class AuthenticationServlet extends HttpServlet {
             if (con != null) {
                 con.close();
             }
+            
+            if (userType != null) {
+                userType.close();
+            }
 
             getServletContext().getRequestDispatcher(url)
                     .forward(request, response);

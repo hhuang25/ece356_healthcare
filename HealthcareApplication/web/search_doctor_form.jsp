@@ -1,7 +1,7 @@
 <%-- 
     Document   : search_doctor_form
     Created on : Mar 22, 2015, 5:08:59 AM
-    Author     : Ajanthan Asogamoorth
+    Author     : Ajanthan Asogamoorthy
 --%>
 
 <%@ include file="/master.jsp" %>

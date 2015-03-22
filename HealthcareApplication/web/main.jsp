@@ -11,12 +11,11 @@
 <!DOCTYPE html>
 <html>
     <body>
-        <div class="content" style="padding: 15px;">
-            <h1>Welcome User!</h1>
+        <div class="content" style="padding: 0 25px 25px 25px">
+            <h1>Welcome <%=_firstName%>!</h1>
             <li><a href="FindDoctorServlet">Find Doctor</a></li>
             <li><a href="ViewFriendRequests">View Friend Requests</a></li>
         </div>
         <%@ include file="/footer.jsp" %>
     </body>
 </html>
-    
