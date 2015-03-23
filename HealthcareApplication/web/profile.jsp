@@ -135,9 +135,12 @@
                                             <b>Reviewed on <%=new SimpleDateFormat("MM/dd/yyyy").format(new Date(review.getReviewDate().getTime()))%></b>
                                             <br/>Rated <%=review.getRating()%> out of 5
                                         </td>
-                                        <td style="text-align: right;">
-                                            <button class="button small">View</button>
-                                        </td>
+                                        <form method="GET" action="ViewReviewServlet"
+                                            <td style="text-align: right;">
+                                                <input type="hidden" value="<%=review.getId()%>" name="review_id">
+                                                <button type="submit" class="button small">View</button>
+                                            </td>
+                                        </form>
                                     </tr>
                                 <%
                                   }
