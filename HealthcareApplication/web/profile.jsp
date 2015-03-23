@@ -117,7 +117,15 @@
                             <table width="100%" class="review-table">
                                 <tr>
                                     <td width="50%"><b><%=result.getNumOfReviews()%></b> Review(s) Written</td>
-                                    <td width="50%" style="text-align: right;"><button class="button medium">Write Review</button></td>
+                                    <td width="50%" style="text-align: right;">
+                                    <%
+                                        if (_patientId != -1) {
+                                    %>
+                                        <button class="button medium">Write Review</button>
+                                    <%
+                                        }
+                                    %>
+                                    </td>
                                 </tr>
                                 <%
                                   for (Review review: result.getReviews()) {
