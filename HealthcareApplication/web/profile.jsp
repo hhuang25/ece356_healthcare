@@ -78,7 +78,7 @@
                                         <td width="50%">Gender</td><td><%=result.getDoctor().getGender()%></td>
                                     </tr>
                                     <tr>
-                                        <td width="50%">Years Specialized</td><td><%=result.getYearsLicensed()%></td>
+                                        <td width="50%">Years Licensed</td><td><%=result.getYearsLicensed()%></td>
                                     </tr>
                                     <tr>
                                         <td width="50%">Average Rating</td><td><%=result.getAverageRating()%>/5.0</td>
