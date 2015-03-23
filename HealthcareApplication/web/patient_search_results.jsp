@@ -15,7 +15,11 @@
 <!DOCTYPE html>
 <html>
     <body>
-        
+        <%
+            if (_patientId == -1) {
+                response.sendRedirect(request.getContextPath() + "/404Page.jsp");
+            }
+        %>
         <table width="90%" class="review-table">
             <thead>
                     <tr>

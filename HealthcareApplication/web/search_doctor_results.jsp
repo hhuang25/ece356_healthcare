@@ -12,11 +12,12 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Doctors</title>
-    </head>
     <body>
+        <%
+            if (_patientId == -1) {
+                response.sendRedirect(request.getContextPath() + "/404Page.jsp");
+            }
+        %>
         <div class="content">
             <%! ArrayList<DoctorReview> doctorReviews;%>
         <table width="80%" class="review-table">
