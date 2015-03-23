@@ -20,7 +20,7 @@
                     Lookup a Patient
                 </h2>
                 <div class="horizontal-center" style="width: 25%;">
-                    <form action="FindPatient" method="post">
+                    <form action="ViewPatientSearchResult" method="GET">
                         <p>Username Contains</p>
                         <input type="text" name="alias" size="45">
                         <p>City</p>

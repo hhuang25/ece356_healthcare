@@ -37,7 +37,7 @@
             );
             for (PatientResult pr : patient_info) {
         %>
-        <form method="post" action="AddFriend">
+        <form method="post" action="ViewPatientSearchResult">
             <tr>
                 <td><%=pr.getUser().getAlias()%></td>
                 <td><%=pr.getRegion().getCity()%></td>
