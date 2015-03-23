@@ -95,27 +95,14 @@ public class ViewFriendRequests extends HttpServlet {
             call_statement.setInt(2, user_id);
             call_statement.executeQuery();
                      
-            call_statement = con.prepareCall(
-                    "{call GetFriendRequestUsers(?)}"
-            );
-            call_statement.setInt(1, logged_in_patient.getId());
-            ResultSet result_set = call_statement.executeQuery();
-            
-            ArrayList<User> users_request_friend = new ArrayList<User>();
-            while (result_set.next()) {
-                User u = Factory.CreateUser(result_set);
-                users_request_friend.add(u);
-            }
             con.close();
-            request.setAttribute("users_request_friend", users_request_friend);
-            url = "/view_friend_requests.jsp";
+            url = "/ViewFriendRequests";
             
         } catch (Exception e) {
             request.setAttribute("exception", e);
             url = "/error.jsp";
         }
-        getServletContext().getRequestDispatcher(url)
-                    .forward(request, response);
+        doGet(request, response);
         
     }
 
