@@ -44,7 +44,7 @@
                         </select>
                         <br/><br/>
                         <div style="text-align: center;">
-                            <input type="submit" value="Search" class="button small">
+                            <input type="submit" value="Search" class="button medium">
                         </div>
                     </form>
                 </div>
