@@ -22,7 +22,6 @@ import util.DbConnectionUtil;
 import java.sql.*;
 import util.Factory;
 import util.NumberUtil;
-import util.StringUtil;
 
 /**
  *
@@ -84,7 +83,6 @@ public class FindDoctorServlet extends HttpServlet {
         Patient logged_in_patient = (Patient)request.getSession().getAttribute(
                 "PatientSession");
         String url;
-        boolean invalidInput = false;
         Connection con = null;
         try{
             String firstName = request.getParameter("firstname").trim();
@@ -101,59 +99,49 @@ public class FindDoctorServlet extends HttpServlet {
             String ratingThreshold = request.getParameter("rating_threshold").trim();
             boolean friendsReviewed = (request.getParameter("friend_reviewed") != null);
             String wordsInReview = request.getParameter("keyword").trim();
-            if(!StringUtil.IsValidString(30, firstName, middleName, lastName, city, province, street, specializationName)
-                    || !StringUtil.IsValidString(7, postalCode) || !StringUtil.IsValidString(6, gender)
-                    || !StringUtil.IsValidString(1000, wordsInReview)){
-                String message = "Search value(s) have incorrect type or exceeded maximum length.";
-                request.setAttribute("errorMessage", message);
-                url = "/search_doctor_form.jsp";
-                invalidInput = true;
-            }else{
-                request.setAttribute("errorMessage", "");
-                con = DbConnectionUtil.getConnection();
-                int pIndex = 2;
-                try(PreparedStatement psmt = con.prepareCall(
-                        "{call FlexibleDoctorSearch(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}")){
-
-                    psmt.setInt(1, logged_in_patient.getId());
-                    psmt.setString(pIndex++, firstName);
-                    psmt.setString(pIndex++, lastName);
-                    psmt.setString(pIndex++, middleName);
-                    psmt.setString(pIndex++, gender);
-                    psmt.setString(pIndex++, street);
-                    if(NumberUtil.isInteger(streetNumber)){
-                        psmt.setInt(pIndex++, Integer.parseInt(streetNumber));
-                    }else{
-                        psmt.setNull(pIndex++, Types.NULL);
-                    }
-                    psmt.setString(pIndex++, city);
-                    psmt.setString(pIndex++, province);
-                    psmt.setString(pIndex++, postalCode);
-                    if(NumberUtil.isInteger(yearLicenseObtained)){
-                        psmt.setInt(pIndex++, Integer.parseInt(yearLicenseObtained));
-                    }else{
-                        psmt.setNull(pIndex++, Types.NULL);
-                    }
-                    psmt.setString(pIndex++, specializationName);
-                    if(NumberUtil.isDouble(ratingThreshold)){
-                        psmt.setDouble(pIndex++, Double.parseDouble(ratingThreshold));
-                    }else{
-                        psmt.setNull(pIndex++, Types.NULL);
-                    }
-                    psmt.setBoolean(pIndex++, friendsReviewed);
-                    psmt.setString(pIndex++, wordsInReview);
-                    try(ResultSet rs = psmt.executeQuery()){
-                        ArrayList<DoctorReview> doctorReviews = new ArrayList<DoctorReview>();
-                        while (rs.next()) {
-                            DoctorReview docRev = Factory.CreateDoctorReview(rs);
-                            doctorReviews.add(docRev);
-                        }
-                        con.close();
-                        request.setAttribute("doctor_reviews", doctorReviews);
-                        url = "/search_doctor_results.jsp";
-                    }
-                }
+            
+            con = DbConnectionUtil.getConnection();
+            int pIndex = 2;
+            try(PreparedStatement psmt = con.prepareCall(
+                    "{call FlexibleDoctorSearch(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}")){
                 
+                psmt.setInt(1, logged_in_patient.getId());
+                psmt.setString(pIndex++, firstName);
+                psmt.setString(pIndex++, lastName);
+                psmt.setString(pIndex++, middleName);
+                psmt.setString(pIndex++, gender);
+                psmt.setString(pIndex++, street);
+                if(NumberUtil.isInteger(streetNumber)){
+                    psmt.setInt(pIndex++, Integer.parseInt(streetNumber));
+                }else{
+                    psmt.setNull(pIndex++, Types.NULL);
+                }
+                psmt.setString(pIndex++, city);
+                psmt.setString(pIndex++, province);
+                psmt.setString(pIndex++, postalCode);
+                if(NumberUtil.isInteger(yearLicenseObtained)){
+                    psmt.setInt(pIndex++, Integer.parseInt(yearLicenseObtained));
+                }else{
+                    psmt.setNull(pIndex++, Types.NULL);
+                }
+                psmt.setString(pIndex++, specializationName);
+                if(NumberUtil.isDouble(ratingThreshold)){
+                    psmt.setDouble(pIndex++, Double.parseDouble(ratingThreshold));
+                }else{
+                    psmt.setNull(pIndex++, Types.NULL);
+                }
+                psmt.setBoolean(pIndex++, friendsReviewed);
+                psmt.setString(pIndex++, wordsInReview);
+                try(ResultSet rs = psmt.executeQuery()){
+                    ArrayList<DoctorReview> doctorReviews = new ArrayList<DoctorReview>();
+                    while (rs.next()) {
+                        DoctorReview docRev = Factory.CreateDoctorReview(rs);
+                        doctorReviews.add(docRev);
+                    }
+                    con.close();
+                    request.setAttribute("doctor_reviews", doctorReviews);
+                    url = "/search_doctor_results.jsp";
+                }
             }
         } catch (Exception e) {
             request.setAttribute("exception", e);
@@ -161,11 +149,7 @@ public class FindDoctorServlet extends HttpServlet {
         }finally{
             DbConnectionUtil.closeConnection(con);
         }
-        if(!invalidInput){
-            getServletContext().getRequestDispatcher(url).forward(request, response);
-        }else{
-            doGet(request,response);
-        }
+        getServletContext().getRequestDispatcher(url).forward(request, response);
     }
 
     /**

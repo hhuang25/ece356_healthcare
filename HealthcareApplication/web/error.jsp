@@ -1,9 +1,5 @@
 <%@page import="java.io.PrintWriter"%>
 <%@page import="java.io.StringWriter"%>
-
-<%@ include file="/master.jsp" %>
-<%@ include file="/auth.jsp" %>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <html>
@@ -26,8 +22,8 @@ stackTrace = errorWriter.toString();
 </jsp:scriptlet>
 
 <h2>Oops!</h2>
-<pre style="color: red;">
-    <%=errorMessage%> Please remove stack trace
+<pre>
+    <%= errorMessage %>
 </pre>
 <h3>Exception stack trace</h3>
 <pre>
