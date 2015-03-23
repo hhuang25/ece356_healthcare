@@ -124,7 +124,7 @@ div.features {
     font-size: 22px;
 }
 
-.button.login {
+.button.small {
     width: 125px;
     height: 35px;
     font-size: 18px;
@@ -160,7 +160,7 @@ input, select {
     padding-left: 10px;
 }
 
-input:hover {
+input:hover, select:hover {
     border: 1px solid #00CC99;
 }
 
@@ -187,13 +187,13 @@ ul.checkmark li:before {
     padding-right: 5px;
 }
 
-select {
-    width: 100%;
-}
-
 .steth {
     background: url("../img/steth.png");
     background-repeat: no-repeat;
     width: 297px;
     height: 291px;
+}
+
+.default-padding {
+    padding: 0 20px 20px 20px;
 }

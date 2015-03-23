@@ -33,7 +33,7 @@
                         </select> 
                         <br/><br/>
                         <div style="text-align: center;">
-                            <input type="submit" value="Submit" class="button login">
+                            <input type="submit" value="Submit" class="button small">
                         </div>
                     </form>
                 </div>
