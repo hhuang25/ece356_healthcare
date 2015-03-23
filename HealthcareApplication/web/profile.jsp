@@ -124,7 +124,7 @@
                                 %>
                                     <tr>
                                         <td>
-                                            Reviewed on <%=new SimpleDateFormat("MM/dd/yyyy").format(new Date(review.getReviewDate().getTime()))%>
+                                            <b>Reviewed on <%=new SimpleDateFormat("MM/dd/yyyy").format(new Date(review.getReviewDate().getTime()))%></b>
                                             <br/>Rated <%=review.getRating()%> out of 5
                                         </td>
                                         <td style="text-align: right;">
