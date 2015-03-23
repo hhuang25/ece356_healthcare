@@ -28,7 +28,7 @@
                 if (result != null) {
             %>
             <%
-                if (result != null && result.getDoctor().getId() == _docId) {
+                if (result.getDoctor().getId() == _docId) {
                     isViewingOwn = true;
             %>
                 Your Profile
@@ -39,6 +39,11 @@
                 <%=result.getDoctor().getFirstName()%> <%=result.getDoctor().getLastName()%>'s Profile
             <%
                 }
+            %>
+            <%
+               if (_docId != -1 && !isViewingOwn) {
+                   response.sendRedirect(request.getContextPath() + "/404Page.jsp");
+               }
             %>
             </h2>
             </div>
@@ -125,7 +130,9 @@
                                     <%
                                         if (_patientId != -1) {
                                     %>
-                                        <button class="button medium">Write Review</button>
+                                        <button class="button medium" 
+                                         onclick="window.location.href='WriteReview?docId=<%=result.getDoctor().getId()%>';">
+                                        Write Review</button>
                                     <%
                                         }
                                     %>
