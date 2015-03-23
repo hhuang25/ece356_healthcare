@@ -22,7 +22,7 @@ import java.sql.*;
  *
  * @author Ajanthan Asogamoorth
  */
-@WebServlet(name = "AddFriendServlet", urlPatterns = {"/AddFriendServlet"})
+@WebServlet(name = "AddFriendServlet", urlPatterns = {"/AddFriend"})
 public class AddFriendServlet extends HttpServlet {
 
 

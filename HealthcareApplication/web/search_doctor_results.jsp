@@ -39,7 +39,7 @@
             <% 
             if(ds.getDoctor() != null){   
             %>
-            <form method="post" action="ProfileServlet">
+            <form method="post" action="Profile">
                     <tr>
                         <td>
                             <%=ds.getDoctor().getFirstName()%>

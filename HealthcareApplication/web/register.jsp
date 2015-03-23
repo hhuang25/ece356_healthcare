@@ -18,7 +18,7 @@
                     Create your free account in seconds
                 </h2>
                 <div class="horizontal-center" style="width: 25%;">
-                    <form action="RegisterServlet" method=post>
+                    <form action="Register" method=post>
                         <p>Username</p>
                         <input type="text" name="username" size="45">
                         <p>Password</p>

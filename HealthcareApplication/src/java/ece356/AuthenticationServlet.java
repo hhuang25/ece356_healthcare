@@ -27,7 +27,7 @@ import util.Factory;
  *
  * @author Tommy
  */
-@WebServlet(name = "AuthenticationServlet", urlPatterns = {"/AuthenticationServlet"})
+@WebServlet(name = "AuthenticationServlet", urlPatterns = {"/Authentication"})
 public class AuthenticationServlet extends HttpServlet {
 
     /**

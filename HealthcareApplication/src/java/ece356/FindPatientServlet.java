@@ -21,7 +21,7 @@ import java.sql.*;
  *
  * @author Ajanthan Asogamoorth
  */
-@WebServlet(name = "FindPatientServlet", urlPatterns = {"/FindPatientServlet"})
+@WebServlet(name = "FindPatientServlet", urlPatterns = {"/FindPatient"})
 public class FindPatientServlet extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

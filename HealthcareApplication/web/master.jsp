@@ -30,7 +30,7 @@
                 %>
                     <span style="color: #696969"><%=user.getAlias()%></span>
                     <div class="dot"></div>
-                    <button class="inverted-button header" onclick="document.location.href='LogoutServlet'">Logout</button>
+                    <button class="inverted-button header" onclick="document.location.href='Logout'">Logout</button>
                 <%
                     } else {
                 %>

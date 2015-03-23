@@ -136,7 +136,7 @@
                                             <br/>Rated <%=review.getRating()%> out of 5
                                         </td>
                                         <td style="text-align: right;">
-                                            <button class="button small" onclick="window.location.href='ViewReviewServlet?review_id=<%=review.getId()%>';">View</button>
+                                            <button class="button small" onclick="window.location.href='ViewReview?review_id=<%=review.getId()%>';">View</button>
                                         </td>
                                     </tr>
                                 <%

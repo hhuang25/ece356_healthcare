@@ -37,7 +37,7 @@
             );
             for (PatientResult pr : patient_info) {
         %>
-        <form method="post" action="AddFriendServlet">
+        <form method="post" action="AddFriend">
             <tr>
                 <td><%=pr.getUser().getAlias()%></td>
                 <td><%=pr.getRegion().getCity()%></td>

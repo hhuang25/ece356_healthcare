@@ -27,7 +27,7 @@ import util.NumberUtil;
  *
  * @author Ajanthan Asogamoorthy
  */
-@WebServlet(name = "FindDoctorServlet", urlPatterns = {"/FindDoctorServlet"})
+@WebServlet(name = "FindDoctorServlet", urlPatterns = {"/FindDoctor"})
 public class FindDoctorServlet extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

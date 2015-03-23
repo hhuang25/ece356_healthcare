@@ -19,7 +19,7 @@
         %>
         <div class="content default-padding">
             <h2>Find your Personalized Doctor</h2>
-            <form method="post" action="FindDoctorServlet">
+            <form method="post" action="FindDoctor">
                 <fieldset>
                 <legend>Personal Information</legend>
                 <table>

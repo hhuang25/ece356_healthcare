@@ -35,7 +35,7 @@
                             Filter based on various criteria to find the right doctor for you.</span>
                         </td>
                         <td style="text-align: right;">
-                            <button class="button large" onclick="window.location.href='FindDoctorServlet';">Find</button>
+                            <button class="button large" onclick="window.location.href='FindDoctor';">Find</button>
                         </td>
                     </tr>
                     <tr>
@@ -45,7 +45,7 @@
                             </span>
                         </td>
                         <td style="text-align: right;">
-                            <button class="button large" onclick="window.location.href='FindPatientServlet';">Find</button>
+                            <button class="button large" onclick="window.location.href='FindPatient';">Find</button>
                         </td>
                     </tr>
                     <tr>
@@ -62,7 +62,7 @@
                         <td><span class="title">View Personal Profile</span><br/>
                             <span class="text">View your personal information and reviews.</span></td>
                         <td style="text-align: right;">
-                            <button class="button large" onclick="window.location.href='ProfileServlet?docId=<%=_docId%>';">View</button>
+                            <button class="button large" onclick="window.location.href='Profile?docId=<%=_docId%>';">View</button>
                         </td>
                     </tr>
                 <%

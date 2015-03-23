@@ -15,7 +15,7 @@
         <%=review_info.getReview().getReviewDate()%>
         <%=review_info.getDoctorName()%>
         
-        <form method="GET" action="ViewReviewServlet">
+        <form method="GET" action="ViewReview">
             <% int previous_id = (Integer)request.getAttribute("previous_id"); %>
             <input type="hidden" value="<%=previous_id%>" name="review_id">
             <% if (previous_id == 0) { %>
@@ -25,7 +25,7 @@
             <% } %>
         </form>
         
-        <form method="GET" action="ViewReviewServlet">
+        <form method="GET" action="ViewReview">
             <% int next_id = (Integer)request.getAttribute("next_id"); %>
             <input type="hidden" value="<%=next_id%>" name="review_id">
             <% if (next_id == 0) { %>

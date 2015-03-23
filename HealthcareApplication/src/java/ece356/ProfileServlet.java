@@ -26,7 +26,7 @@ import util.Factory;
  *
  * @author Tommy
  */
-@WebServlet(name = "ProfileServlet", urlPatterns = {"/ProfileServlet"})
+@WebServlet(name = "ProfileServlet", urlPatterns = {"/Profile"})
 public class ProfileServlet extends HttpServlet {
 
     /**
