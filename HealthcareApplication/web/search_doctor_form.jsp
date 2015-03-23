@@ -16,57 +16,57 @@
             <h2>Find your Personalized Doctor</h2>
             <form method="post" action="FindDoctorServlet">
                 <fieldset>
-                <legend> Personal Information </legend>
+                <legend>Personal Information</legend>
                 <table>
                 <tr>
                     <td width="12%">First Name</td><td><input type="text" name="firstname"></td>
-                    <td width="12%">Last Name</td><td><input type="text" name="lastname"></td>
-                    <td width="12%">Gender</td>
+                    <td width="15%" style="padding-left: 20px;">Last Name</td><td><input type="text" name="lastname"></td>
+                    <td width="12%" style="padding-left: 30px;">Gender</td>
                     <td style="display: inline-block; margin-top: -10px;">
                         <input name="gender" type="radio" value="male" style="position: relative; top: 8px;"> Male
                         <input name="gender" type="radio" value="female" style="position: relative; top: 8px;"> Female
                     </td>
                 </tr>
-                <tr>
-                    <td>City</td>
-                    <td><input type="text" name="city" style="margin-right: 20px;"></td>          
-                    <td>Province</td>
-                    <td>
-                    <select name="province">
-                        <option>Select One</option>
-                        <option>Ontario</option>
-                        <option>Quebec</option>
-                        <option>British Columbia</option>
-                        <option>Alberta</option>
-                        <option>Saskatchewan</option>
-                        <option>Winnipeg</option>
-                        <option>Manitoba</option>
-                        <option>Nova Scotia</option>
-                        <option>New Brunswick</option>
-                        <option>Newfoundland and Labrador</option>
-                        <option>North West Territories</option>
-                        <option>Yukon</option>
-                        <option>Nunavut</option>
-                    </select>
-                    </td>
-                </tr>
                 </table>
                 </fieldset><br/>
                 <fieldset>
-                    <legend> Address </legend>
+                    <legend>Work Address</legend>
                     <table>
                         <tr>
                             <td width="12%">Street Number</td>
                             <td><input type="number" name="street_number" min="1"></td>
                             <td width="12%">Street</td>
-                            <td><input type="text" name="street"></td>
-                            <td width="12%">Postal Code</td>
+                            <td><input type="text" name="street" style="width: 205px;"></td>
+                            <td width="15%" style="padding-left: 20px;">Postal Code</td>
                             <td><input type="text" name="postal_code"></td>
+                        </tr>
+                        <tr>
+                            <td>City</td>
+                            <td><input type="text" name="city" style="width: 150px; margin-right: 20px;"></td>          
+                            <td>Province</td>
+                            <td>
+                            <select name="province">
+                                <option>Select One</option>
+                                <option>Ontario</option>
+                                <option>Quebec</option>
+                                <option>British Columbia</option>
+                                <option>Alberta</option>
+                                <option>Saskatchewan</option>
+                                <option>Winnipeg</option>
+                                <option>Manitoba</option>
+                                <option>Nova Scotia</option>
+                                <option>New Brunswick</option>
+                                <option>Newfoundland and Labrador</option>
+                                <option>North West Territories</option>
+                                <option>Yukon</option>
+                                <option>Nunavut</option>
+                            </select>
+                            </td>
                         </tr>
                     </table>
                 </fieldset><br/>
                 <fieldset>
-                    <legend> Doctor Attributes </legend>
+                    <legend>Doctor Attributes</legend>
                     <table>
                         <tr>
                             <td width="12%">Year License Obtained</td>
@@ -94,22 +94,22 @@
                         </tr>
                         <tr>
                             <td width="12%">Friend Reviewed</td>
-                            <td><input type="text" name="friend_reviewed" style="width: 150px;"></td>
+                            <td><input type="checkbox" name="friend_reviewed" style="position: relative; top: 3px;"></td>
                     </tr>
                     </table>
                 </fieldset><br/>
                 <fieldset>
-                    <legend> Review Characteristics </legend>
+                    <legend>Review Characteristics</legend>
                     <table>
                         <tr>
-                            <td width="12%">Keyword in Review</td>
+                            <td width="32%">Keyword in Review</td>
                             <td><input type="text" name="keyword" size="50"></td>
                         </tr>
                     </table>
                 </fieldset>
                 <br/>
                 <div style="text-align: center;">
-                    <input type="submit" class="button small" value="Search">
+                    <input type="submit" class="button medium" value="Search">
                 </div>
             </form>
         </div>

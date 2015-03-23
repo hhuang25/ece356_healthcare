@@ -7,6 +7,7 @@ package ece356;
 
 import bean.Address;
 import bean.Doctor;
+import bean.Review;
 import bean.Specialization;
 import composite.ViewProfileResult;
 import java.io.IOException;
@@ -61,15 +62,15 @@ public class ProfileServlet extends HttpServlet {
 
             Connection con = null;
             PreparedStatement cs = null;
-            PreparedStatement user = null;
+            PreparedStatement ps = null;
             ViewProfileResult result = new ViewProfileResult();
 
             try {
                 con = DbConnectionUtil.getConnection();
                 String userString = "SELECT user_id FROM Doctor WHERE user_id = ?;"; 
-                user = con.prepareStatement(userString);
-                user.setInt(1, id);
-                ResultSet rs = user.executeQuery();
+                ps = con.prepareStatement(userString);
+                ps.setInt(1, id);
+                ResultSet rs = ps.executeQuery();
                 if (rs.next()) {
                     cs = con.prepareCall("{call DoctorProfile(?, ?)}");
                     cs.setInt(1, id);
@@ -112,6 +113,19 @@ public class ProfileServlet extends HttpServlet {
                         addresses.add(address);
                     }
                     
+                    String reviewString = "Select * from Review as r Where r.doctor_id = ? ORDER BY review_date DESC;";
+                    ps = con.prepareStatement(reviewString);
+                    ps.setInt(1, id);
+                    rs = ps.executeQuery();
+                    ArrayList<Review> reviews = result.getReviews();
+                    while(rs.next()) {
+                        Review review = new Review();
+                        review.setId(rs.getInt("id"));
+                        review.setReviewDate(rs.getTimestamp("review_date"));
+                        review.setRating(rs.getInt("rating"));
+                        reviews.add(review);
+                    }
+
                     request.setAttribute("ViewProfileResult", result);
                     url = "/profile.jsp";
                 }
@@ -124,8 +138,8 @@ public class ProfileServlet extends HttpServlet {
                     cs.close();
                 }
                 
-                if (user != null) {
-                    user.close();
+                if (ps != null) {
+                    ps.close();
                 }
                 
                 if (con != null) {

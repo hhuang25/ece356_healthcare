@@ -3,6 +3,10 @@
     Created on : 22-Mar-2015, 4:28:19 PM
     Author     : Tommy
 --%>
+<%@page import="java.sql.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="bean.Review"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="bean.Specialization"%>
 <%@page import="bean.Address"%>
 <%@page import="composite.ViewProfileResult"%>
@@ -68,15 +72,27 @@
                                         <td width="50%">Years Specialized</td><td><%=result.getYearsLicensed()%></td>
                                     </tr>
                                     <tr>
-                                        <td width="50%">Address(es)</td>
+                                        <td width="50%">Average Rating</td><td><%=result.getAverageRating()%>/5.0</td>
+                                    </tr>
+                                    <tr>
+                                        <td width="50%">Work Address(es)</td>
                                         <td>
                                             <%
-                                                for(Address address: result.getAddresses()) {
+                                                int count = 0;
+                                                ArrayList<Address> addresses = result.getAddresses();
+                                                for(Address address: addresses) {
+                                                    count++;
                                             %>
                                                 <%=address.getStreetNumber()%> <%=address.getStreet()%><br/>
                                                 <%=address.getRegion().getCity()%>, <%=address.getRegion().getProvince()%><br/>
                                                 <%=address.getPostalCode()%><br/>
-                                                <br/>
+                                                <%
+                                                    if (count != addresses.size()) {
+                                                %>
+                                                    <br/>
+                                                <%
+                                                }
+                                                %>
                                             <%
                                               }
                                             %>
@@ -97,11 +113,27 @@
                                 </tbody>
                             </table>
                         </td>
-                        <td width="50%">
-                            <table width="100%">
+                        <td width="50%" style="vertical-align: top;">
+                            <table width="100%" class="review-table">
                                 <tr>
-                                    <td></td><td></td>
+                                    <td width="50%"><b><%=result.getNumOfReviews()%></b> Review(s) Written</td>
+                                    <td width="50%" style="text-align: right;"><button class="button medium">Write Review</button></td>
                                 </tr>
+                                <%
+                                  for (Review review: result.getReviews()) {
+                                %>
+                                    <tr>
+                                        <td>
+                                            Reviewed on <%=new SimpleDateFormat("MM/dd/yyyy").format(new Date(review.getReviewDate().getTime()))%>
+                                            <br/>Rated <%=review.getRating()%> out of 5
+                                        </td>
+                                        <td style="text-align: right;">
+                                            <button class="button small">View</button>
+                                        </td>
+                                    </tr>
+                                <%
+                                  }
+                                %>
                             </table>
                         </td>
                     </tr>

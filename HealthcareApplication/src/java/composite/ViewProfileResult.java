@@ -7,6 +7,7 @@ package composite;
 
 import bean.Address;
 import bean.Doctor;
+import bean.Review;
 import bean.Specialization;
 import java.util.ArrayList;
 
@@ -18,6 +19,7 @@ public class ViewProfileResult {
     private Doctor doctor;
     private ArrayList<Address> addresses;
     private ArrayList<Specialization> specializations;
+    private ArrayList<Review> reviews;
     private String email;
     private int yearsLicensed;
     private double averageRating;
@@ -26,6 +28,7 @@ public class ViewProfileResult {
     public ViewProfileResult() {
         addresses = new ArrayList<>();
         specializations = new ArrayList<>();
+        reviews = new ArrayList<>();
     }
 
     /**
@@ -124,6 +127,20 @@ public class ViewProfileResult {
      */
     public void setNumOfReviews(int numOfReviews) {
         this.numOfReviews = numOfReviews;
+    }
+
+    /**
+     * @return the reviews
+     */
+    public ArrayList<Review> getReviews() {
+        return reviews;
+    }
+
+    /**
+     * @param reviews the reviews to set
+     */
+    public void setReviews(ArrayList<Review> reviews) {
+        this.reviews = reviews;
     }
     
     

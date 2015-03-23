@@ -130,6 +130,12 @@ div.features {
     font-size: 18px;
 }
 
+.button.medium {
+    width: 160px;
+    height: 40px;
+    font-size: 20px;
+}
+
 .inverted-button {
     color: #00CC99;
     background: #FFF;
@@ -199,7 +205,8 @@ ul.checkmark li:before {
 }
 
 table.main-table {
-    border-collapse: separate; border-spacing: 15px 15px;
+    border-collapse: separate; 
+    border-spacing: 15px 15px;
 }
 
 table.main-table button {
@@ -222,4 +229,9 @@ table.side-green-table > tbody > tr > td:first-child {
 
 table.side-green-table > tbody > tr td {
     padding: 20px;
+}
+
+table.review-table {
+    border-collapse: separate; 
+    border-spacing: 15px 15px;
 }
