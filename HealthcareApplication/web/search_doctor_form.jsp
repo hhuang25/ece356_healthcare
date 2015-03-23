@@ -19,6 +19,13 @@
         %>
         <div class="content default-padding">
             <h2>Find your Personalized Doctor</h2>
+            <%
+                if (errorMessage != null) {
+            %>
+                <p style="color: red;"><%=errorMessage%></p>
+            <%
+                }
+            %>
             <form method="post" action="FindDoctor">
                 <fieldset>
                 <legend>Personal Information</legend>

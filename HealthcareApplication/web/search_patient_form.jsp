@@ -20,7 +20,18 @@
                     Lookup a Patient
                 </h2>
                 <div class="horizontal-center" style="width: 25%;">
+<<<<<<< Updated upstream
                     <form action="ViewPatientSearchResult" method="GET">
+=======
+                    <%
+                        if (errorMessage != null) {
+                    %>
+                        <p style="color: red;"><%=errorMessage%></p>
+                    <%
+                        }
+                    %>
+                    <form action="FindPatient" method="post">
+>>>>>>> Stashed changes
                         <p>Username Contains</p>
                         <input type="text" name="alias" size="45">
                         <p>City</p>

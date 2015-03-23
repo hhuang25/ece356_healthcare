@@ -33,3 +33,4 @@
         }
    }
 %>
+<% String errorMessage = (String)request.getAttribute("errorMessage"); %>
