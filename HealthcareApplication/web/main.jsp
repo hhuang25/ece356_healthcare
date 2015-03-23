@@ -11,25 +11,63 @@
 <!DOCTYPE html>
 <html>
     <body>
-        <div class="content default-padding" style="text-align: center;">
-            <h1>Welcome <%=_firstName%>!</h1>
+        <div class="content default-padding">
+            <div style="text-align: center;">
+                <h1>
+                    Welcome
+                    <%
+                        if (_docId != -1) {
+                    %>
+                    Doctor 
+                    <%
+                        }
+                    %>
+                    <%=_firstName%>!
+                </h1>
+            </div>
             <table colspan="2" class="horizontal-center main-table">
-                <tr>
-                    <td>
-                        <button class="button large" onclick="window.location.href='FindDoctorServlet';">Find Doctor</button>
-                    </td>
-                    <td>
-                        <button class="button large" onclick="window.location.href='ViewFriendRequests';">View Friend Requests</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <button class="button large" onclick="window.location.href='ProfileServlet?docId=<%=_docId%>';">View Profile</button>
-                    </td>
-                    <td>
-                        <button class="button large" onclick="window.location.href='FindPatientServlet';">Find Patients</button>
-                    </td>
-                </tr>
+                <%
+                    if (_patientId != -1) {
+                %>
+                    <tr>
+                        <td><span class="title">Doctors Search</span><br/>
+                            <span class="text">
+                            Filter based on various criteria to find the right doctor for you.</span>
+                        </td>
+                        <td style="text-align: right;">
+                            <button class="button large" onclick="window.location.href='FindDoctorServlet';">Find</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class="title">Patients Search</span><br/>
+                            <span class="text">
+                                Search for patients according to their alias, city and province.
+                            </span>
+                        </td>
+                        <td style="text-align: right;">
+                            <button class="button large" onclick="window.location.href='FindPatientServlet';">Find</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class="title">View Friend Requests</span><br/>
+                            <span class="text">View the patients that have added you as a friend.</span></td>
+                        <td style="text-align: right;">
+                            <button class="button large" onclick="window.location.href='ViewFriendRequests';">View</button>
+                        </td>
+                    </tr>
+                <%
+                    } else {
+                %>
+                    <tr>
+                        <td><span class="title">View Personal Profile</span><br/>
+                            <span class="text">View your personal information and reviews.</span></td>
+                        <td style="text-align: right;">
+                            <button class="button large" onclick="window.location.href='ProfileServlet?docId=<%=_docId%>';">View</button>
+                        </td>
+                    </tr>
+                <%
+                    }
+                %>
             </table>
         </div>
         <%@ include file="/footer.jsp" %>
