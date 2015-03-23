@@ -96,11 +96,9 @@ public class ViewFriendRequests extends HttpServlet {
             call_statement.executeQuery();
                      
             con.close();
-            url = "/ViewFriendRequests";
             
         } catch (Exception e) {
             request.setAttribute("exception", e);
-            url = "/error.jsp";
         }
         doGet(request, response);
         
