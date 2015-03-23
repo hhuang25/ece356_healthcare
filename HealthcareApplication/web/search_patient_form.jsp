@@ -3,7 +3,8 @@
     Created on : Mar 22, 2015, 9:24:36 PM
     Author     : Ajanthan Asogamoorth
 --%>
-
+<%@ include file="/master.jsp" %>
+<%@ include file="/auth.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -23,7 +24,7 @@
                     <td>Province</td>
                     <td>
                     <select name="province">
-                        <option>Select One</option>
+                        <option value="">Select One</option>
                         <option>Ontario</option>
                         <option>Quebec</option>
                         <option>British Columbia</option>
