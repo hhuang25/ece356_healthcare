@@ -21,6 +21,9 @@
                     <td>
                         <button class="button large" onclick="window.location.href='ViewFriendRequests';" style="width: 250px;">View Friend Requests</button>
                     </td>
+                    <td>
+                        <button class="button large" onclick="window.location.href='FindPatientServlet';" style="width: 250px;">Find Patients</button>
+                    </td>
                 </tr>
             </table>
         </div>
