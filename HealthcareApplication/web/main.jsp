@@ -30,27 +30,34 @@
                     if (_patientId != -1) {
                 %>
                     <tr>
-                        <td><span class="title">Doctors Search</span><br/>
+                        <td><div class="icon" style="margin: 0 10px 0 0; top: -2px;">
+                        <div class="search"></div></div>
+                        <div style="display: inline-block;"><span class="title">Doctors Search</span><br/>
                             <span class="text">
-                            Filter based on various criteria to find the right doctor for you.</span>
+                                Filter based on various criteria to find the right doctor.</span></div>
                         </td>
                         <td style="text-align: right;">
                             <button class="button large" onclick="window.location.href='FindDoctor';">Find</button>
                         </td>
                     </tr>
                     <tr>
-                        <td><span class="title">Patients Search</span><br/>
+                        <td><div class="icon" style="margin: 0 10px 0 0; top: -3px;">
+                        <div class="search"></div></div><div style="display: inline-block;"><span class="title">Patients Search</span><br/>
                             <span class="text">
-                                Search for patients according to their alias, city and province.
-                            </span>
+                                Search for patients according to their alias and more.
+                            </span></div>
                         </td>
                         <td style="text-align: right;">
                             <button class="button large" onclick="window.location.href='FindPatient';">Find</button>
                         </td>
                     </tr>
                     <tr>
-                        <td><span class="title">View Friend Requests</span><br/>
-                            <span class="text">View the patients that have added you as a friend.</span></td>
+                        <td>
+                            <div class="icon" style="margin: 0 10px 0 -5px; top: -3px;">
+                                <div class="chat"></div>
+                                <div class="lines"></div></div>
+                                <div style="display: inline-block;"><span class="title">View Friend Requests</span><br/>
+                                <span class="text">View the patients that have added you as a friend.</span></div></td>
                         <td style="text-align: right;">
                             <button class="button large" onclick="window.location.href='ViewFriendRequests';">View</button>
                         </td>
@@ -59,8 +66,11 @@
                     } else {
                 %>
                     <tr>
-                        <td><span class="title">View Personal Profile</span><br/>
-                            <span class="text">View your personal information and reviews.</span></td>
+                        <td><div class="icon" style="margin: 0 10px 0 0; top: -3px;">
+                            <div class="user"></div>
+                            <div class="shoulder"></div></div>
+                            <div style="display: inline-block;"><span class="title">View Personal Profile</span><br/>
+                                <span class="text">View your personal information and reviews.</span></div></td>
                         <td style="text-align: right;">
                             <button class="button large" onclick="window.location.href='Profile?docId=<%=_docId%>';">View</button>
                         </td>

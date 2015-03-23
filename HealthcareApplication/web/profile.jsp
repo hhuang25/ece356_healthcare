@@ -21,6 +21,9 @@
         <% Boolean isViewingOwn = false; %>
         <div class="content default-padding">
             <div style="text-align: center;">
+                <h2 style="margin-top: 0;"><div class="icon" style="top: 20px;">
+		<div class="user"></div>
+		<div class="shoulder"></div></div>
             <%
                 if (result != null) {
             %>
@@ -28,21 +31,22 @@
                 if (result != null && result.getDoctor().getId() == _docId) {
                     isViewingOwn = true;
             %>
-                    <h2>Your Profile</h2>
+                Your Profile
             <%
                 }
                 else {
             %>
-                    <h2><%=result.getDoctor().getFirstName()%> <%=result.getDoctor().getLastName()%>'s Profile</h2>
+                <%=result.getDoctor().getFirstName()%> <%=result.getDoctor().getLastName()%>'s Profile
             <%
                 }
             %>
+            </h2>
             </div>
             <table width="100%" colspan="2">
                 <thead>
                     <tr>
-                        <th><h2>Information</h2></th>
-                        <th><h2>Reviews</h2></th>
+                        <th><h2>◆ Information</h2></th>
+                        <th><h2>✍ Reviews</h2></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -133,7 +137,22 @@
                                     <tr>
                                         <td>
                                             <b>Reviewed on <%=new SimpleDateFormat("MM/dd/yyyy").format(new Date(review.getReviewDate().getTime()))%></b>
-                                            <br/>Rated <%=review.getRating()%> out of 5
+                                            <br/>Rated 
+                                            <% 
+                                                int i = 0;
+                                                for (i = 0; i < review.getRating(); i++) {
+                                            %>
+                                                ★
+                                            <%
+                                            }
+                                            %>
+                                            <%
+                                              for (int x = i; x < 5; x++) {
+                                            %>
+                                                ✰
+                                            <%
+                                              }
+                                            %>
                                         </td>
                                         <td style="text-align: right;">
                                             <button class="button small" onclick="window.location.href='ViewReview?review_id=<%=review.getId()%>';">View</button>
