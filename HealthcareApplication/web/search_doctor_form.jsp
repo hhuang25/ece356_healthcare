@@ -50,7 +50,18 @@
                         </tr>
                         <tr>
                             <td>City</td>
-                            <td><input type="text" name="city" style="width: 150px; margin-right: 20px;"></td>          
+                            <td>
+                                <select name="city">
+                                <%! ArrayList<String> cities;%>
+                                <%
+                                    cities = (ArrayList<String>) request.getAttribute("cities");
+                                    for (String city : cities) {
+                                %>
+                                <option value="<%=city%>"><%=city%></option>
+                                <%
+                                    }
+                                %>      
+                            </td>
                             <td>Province</td>
                             <td>
                             <select name="province">
