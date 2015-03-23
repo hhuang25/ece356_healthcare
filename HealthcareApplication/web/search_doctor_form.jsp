@@ -20,20 +20,22 @@
                 <table>
                 <tr>
                     <td width="12%">First Name</td><td><input type="text" name="firstname"></td>
+                    <td width="12%">Middle Name</td><td><input type="text" name="middlename"></td>
                     <td width="12%">Last Name</td><td><input type="text" name="lastname"></td>
-                    <td width="12%">Gender</td>
-                    <td style="display: inline-block; margin-top: -10px;">
-                        <input name="gender" type="radio" value="male" style="position: relative; top: 8px;"> Male
-                        <input name="gender" type="radio" value="female" style="position: relative; top: 8px;"> Female
-                    </td>
+                    
                 </tr>
                 <tr>
+                    <td width="12%">Gender</td>
+                    <td style="display: inline-block; margin-top: -10px;">
+                        <input name="gender" type="radio" value="male" style="position: relative; top: 10px;"> Male
+                        <input name="gender" type="radio" value="female" style="position: relative; top: 10px;"> Female
+                    </td>
                     <td>City</td>
                     <td><input type="text" name="city" style="margin-right: 20px;"></td>          
                     <td>Province</td>
                     <td>
                     <select name="province">
-                        <option>Select One</option>
+                        <option value="">Select One</option>
                         <option>Ontario</option>
                         <option>Quebec</option>
                         <option>British Columbia</option>
@@ -75,7 +77,7 @@
                         <tr>
                             <td width="12%">Specialization</td>
                             <td><select name="specialization" style="width: 160px;">
-                                <option>Select One</option>
+                                <option value="">Select One</option>
                         <%! ArrayList<String> specializations;%>
                         <%
                             specializations = (ArrayList<String>) request.getAttribute("specializations");
@@ -94,7 +96,7 @@
                         </tr>
                         <tr>
                             <td width="12%">Friend Reviewed</td>
-                            <td><input type="text" name="friend_reviewed" style="width: 150px;"></td>
+                            <td><input type="checkbox" name="friend_reviewed" style="width: 150px;"></td>
                     </tr>
                     </table>
                 </fieldset><br/>
