@@ -15,7 +15,7 @@
             }
         %>
         <div class="content">
-            <div class="passage">
+            <div class="passage pentagon">
                 <h1>Find the best doctor for you</h1>
                 <p>Your all-in-one solution for finding the right doctor in your area</p>
                 <div class="steth horizontal-center"></div>

@@ -47,7 +47,8 @@ div.header > span.title > a:hover {
 div.footer {
     font-family: "Samba";
     border-top: 1px solid #00CC99;
-    color: #00CC99;
+    background: #00CC99;
+    color: #FFF;
     font-size: 20px;
     bottom: 0;
     height: 40px;
@@ -269,4 +270,8 @@ table.review-table {
 table.friend-requests-table {
     table-layout: fixed;
     width: 550px; 
+}
+
+.pentagon {
+    background: url("../img/congruent_pentagon.png") !important;
 }
