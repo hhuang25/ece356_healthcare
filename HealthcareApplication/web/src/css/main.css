@@ -24,6 +24,12 @@ html, body {
     src: url("../fonts/Samba.ttf");
 }
 
+fieldset {
+    border-radius: 8px;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+}
+
 div.content {
     min-height: 100%;
 }

@@ -46,7 +46,14 @@
                 <form method="post" action="ViewFriendRequests">
                     <table class="friend-requests-table horizontal-center">
                         <tr>
-                            <td><b><%=u.getAlias()%></b><br/><%=u.getEmail()%></td>
+                            <td>
+                                <div class="icon" style="margin: 0 10px 0 0; top: -3px;">
+                                <div class="user"></div>
+                                <div class="shoulder"></div></div>
+                                <div style="display: inline-block;">
+                                    <b><%=u.getAlias()%></b><br/><%=u.getEmail()%>
+                                </div>
+                            </td>
                             <td style="text-align: right;">
                                 <input type="hidden" value="<%=u.getId()%>" name="user_id">
                                 <input type="submit" value="Accept" class="button small">
