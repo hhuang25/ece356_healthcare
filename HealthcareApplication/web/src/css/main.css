@@ -235,3 +235,8 @@ table.review-table {
     border-collapse: separate; 
     border-spacing: 15px 15px;
 }
+
+table.friend-requests-table {
+    table-layout: fixed;
+    width: 550px; 
+}
