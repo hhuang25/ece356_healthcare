@@ -23,9 +23,10 @@
                 <div class="horizontal-center" style="width: 25%;">
                     <form action="ViewPatientSearchResult" method="GET">
                         <p>Username Contains</p>
-                        <input type="text" name="alias" size="45">
+                        <input type="text" name="alias" size="45" maxlength="100">
                         <p>City</p>
                         <select name="city">
+                            <option value="">Select One</option>
                             <%! ArrayList<String> cities;%>
                             <%
                                 cities = (ArrayList<String>) request.getAttribute("cities");
