@@ -49,7 +49,7 @@
                             <td>Province</td>
                             <td>
                             <select name="province">
-                                <option>Select One</option>
+                                <option value="">Select One</option>
                                 <option>Ontario</option>
                                 <option>Quebec</option>
                                 <option>British Columbia</option>

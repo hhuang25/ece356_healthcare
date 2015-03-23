@@ -28,7 +28,7 @@
             <% 
             if(ds.getDoctor() != null){   
             %>
-            <form method="post" action="DoctorProfileServlet">
+            <form method="post" action="ProfileServlet">
                 <%=ds.getDoctor().getFirstName()%>
                 <%=ds.getDoctor().getLastName()%>
                 <%=ds.getDoctor().getMiddleName()%>
@@ -36,6 +36,7 @@
                 <%=ds.getDoctor().getYearLicenseObtained()%>
                 <%=ds.getAverageRating()%>
                 <%=ds.getNumberOfReviews()%>
+                <input type="hidden" value="<%=ds.getDoctor().getId()%>" name="docId">
                 <input type="hidden" value="<%=ds.getDoctor().getUserId()%>" name="user_id">
                 <input type="submit" value="View Profile">
             </form>

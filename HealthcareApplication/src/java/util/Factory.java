@@ -51,12 +51,14 @@ public class Factory {
     
     public static DoctorReview CreateDoctorReview(ResultSet rs) {
         DoctorReview doctorReview = new DoctorReview();
+        Doctor doctor = new Doctor();
         try {
-            doctorReview.getDoctor().setId(rs.getInt("id"));
-            doctorReview.getDoctor().setFirstName(rs.getString("first_name"));
-            doctorReview.getDoctor().setMiddleName(rs.getString("middle_name"));
-            doctorReview.getDoctor().setLastName(rs.getString("last_name"));
-            doctorReview.getDoctor().setGender(rs.getString("gender"));
+            doctor.setId(rs.getInt("id"));
+            doctor.setFirstName(rs.getString("first_name"));
+            doctor.setMiddleName(rs.getString("middle_name"));
+            doctor.setLastName(rs.getString("last_name"));
+            doctor.setGender(rs.getString("gender"));
+            doctorReview.setDoctor(doctor);
             doctorReview.setAverageRating(rs.getDouble("average_rating"));
             doctorReview.setNumberOfReviews(rs.getInt("num_of_reviews"));
         }
