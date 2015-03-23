@@ -45,27 +45,34 @@ public class ViewFriendRequests extends HttpServlet {
         Patient logged_in_patient = (Patient)request.getSession().getAttribute(
                 "PatientSession"
         );
-        try {
-            con = DbConnectionUtil.getConnection();
-            PreparedStatement call_statement = con.prepareCall(
-                    "{call GetFriendRequestUsers(?)}"
-            );
-            call_statement.setInt(1, logged_in_patient.getId());
-            ResultSet result_set = call_statement.executeQuery();
-            
-            ArrayList<User> users_request_friend = new ArrayList<User>();
-            while (result_set.next()) {
-                User u = Factory.CreateUser(result_set);
-                users_request_friend.add(u);
+        
+        if (logged_in_patient != null) {
+            try {
+                con = DbConnectionUtil.getConnection();
+                PreparedStatement call_statement = con.prepareCall(
+                        "{call GetFriendRequestUsers(?)}"
+                );
+                call_statement.setInt(1, logged_in_patient.getId());
+                ResultSet result_set = call_statement.executeQuery();
+
+                ArrayList<User> users_request_friend = new ArrayList<User>();
+                while (result_set.next()) {
+                    User u = Factory.CreateUser(result_set);
+                    users_request_friend.add(u);
+                }
+                con.close();
+                request.setAttribute("users_request_friend", users_request_friend);
+                url = "/view_friend_requests.jsp";
+
+            } catch (Exception e) {
+                request.setAttribute("exception", e);
+                url = "/error.jsp";
             }
-            con.close();
-            request.setAttribute("users_request_friend", users_request_friend);
-            url = "/view_friend_requests.jsp";
-            
-        } catch (Exception e) {
-            request.setAttribute("exception", e);
-            url = "/error.jsp";
         }
+        else {
+            url = "/main.jsp";
+        }
+
         getServletContext().getRequestDispatcher(url).forward(request, response);
     
     }

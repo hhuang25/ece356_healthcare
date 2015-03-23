@@ -9,6 +9,11 @@
 <!DOCTYPE html>
 <html>
     <body>
+        <%
+            if (_patientId == -1) {
+                response.sendRedirect(request.getContextPath() + "/main.jsp");
+            }
+        %>
         <div class="content">
             <div class="horizontal-center">
                 <h2 style="text-align: center;">

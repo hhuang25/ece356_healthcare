@@ -12,6 +12,11 @@
 <!DOCTYPE html>
 <html>
     <body>
+        <%
+            if (_patientId == -1) {
+                response.sendRedirect(request.getContextPath() + "/main.jsp");
+            }
+        %>
         <div class="content default-padding">
             <h2>Find your Personalized Doctor</h2>
             <form method="post" action="FindDoctorServlet">
