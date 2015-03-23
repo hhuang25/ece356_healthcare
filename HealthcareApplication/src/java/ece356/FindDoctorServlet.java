@@ -43,27 +43,44 @@ public class FindDoctorServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String url;
-        Connection con;  
+        Connection con = null;
         Statement stmt;
         
         
         try {
             con = DbConnectionUtil.getConnection();
             stmt = con.createStatement();
-
-            ResultSet specializations = stmt.executeQuery("Select specialization from Specialization;");
+            ArrayList<String> cities = new ArrayList<String>();
             ArrayList<String> specialization_list = new ArrayList<String>();
+            
+            
+            // get specializations
+            ResultSet specializations = stmt.executeQuery("Select specialization from Specialization;");
             while (specializations.next()) {
                 specialization_list.add(
                     specializations.getString("specialization")
                 );
             }
+            
+            // get cities
+            ResultSet rs = stmt.executeQuery("Select city from Region;");
+            while (rs.next()) {
+                cities.add(
+                    rs.getString("city")
+                );
+            }
+            
+            // set cities and specializations into request
             request.setAttribute("specializations", specialization_list);
+            request.setAttribute("cities", cities);
+            
             url = "/search_doctor_form.jsp";
-            con.close();
+            
         } catch (Exception e) {
             request.setAttribute("exception", e);
             url = "/error.jsp";
+        } finally {
+            DbConnectionUtil.closeConnection(con);
         }
         getServletContext().getRequestDispatcher(url).forward(request, response);
     }

@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package ece356;
-
 import bean.*;
 import java.io.IOException;
 import composite.PatientResult;
@@ -36,7 +35,32 @@ public class FindPatientServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/search_patient_form.jsp").forward(request, response);
+        String url;
+        Connection con = null;
+        Statement stmt;
+        try {
+            con = DbConnectionUtil.getConnection();
+            stmt = con.createStatement();
+            ArrayList<String> cities = new ArrayList<String>();
+            
+            // get cities
+            ResultSet rs = stmt.executeQuery("Select city from Region;");
+            while (rs.next()) {
+                cities.add(
+                    rs.getString("city")
+                );
+            }
+            
+            request.setAttribute("cities", cities);
+            url = "/search_patient_form.jsp";
+            
+        } catch (Exception e) {
+             request.setAttribute("exception", e);
+            url = "/error.jsp";
+        } finally {
+            DbConnectionUtil.closeConnection(con);
+        }
+        getServletContext().getRequestDispatcher(url).forward(request, response);
     }
   
 
@@ -51,59 +75,6 @@ public class FindPatientServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            String alias_keyword = request.getParameter("alias");
-            String province = request.getParameter("province");
-            String city = request.getParameter("city");
-            Patient logged_in_patient = (Patient)request.getSession().getAttribute(
-                "PatientSession"
-            );
-            Connection con;
-            String url;
-            try {
-                con = DbConnectionUtil.getConnection();
-                PreparedStatement call_statement = con.prepareCall(
-                        "{call PatientSearch(?, ?, ?, ?)}"
-                );
-                call_statement.setString(1, alias_keyword);
-                call_statement.setString(2, province);
-                call_statement.setString(3, city);
-                call_statement.setInt(4, logged_in_patient.getId());
-                
-                ResultSet result_set = call_statement.executeQuery();
-
-                ArrayList<PatientResult> patient_info = new ArrayList<PatientResult>();
-                
-                while (result_set.next()) {
-                    Patient p = new Patient();
-                    p.setId(result_set.getInt("ID"));
-                    User u = new User();
-                    u.setAlias(result_set.getString("alias"));
-                    Region r = new Region();
-                    r.setCity(result_set.getString("city"));
-                    r.setProvince(result_set.getString("province"));
-                    PatientResult pr = new PatientResult();
-                    pr.setUser(u);
-                    pr.setPatient(p);
-                    pr.setRegion(r);
-                    pr.setNumReview(result_set.getInt("num_of_reviews"));
-                    pr.setTimeReview(result_set.getTimestamp("last_review_date"));
-                    pr.setStatus(
-                            result_set.getInt("incoming_status"),
-                            result_set.getInt("outgoing_status")
-                    );
-                    patient_info.add(pr);
-                }
-                
-                con.close();
-                request.setAttribute("patient_info", patient_info);
-                url = "/patient_search_results.jsp";
-            
-            } catch (Exception e) {
-                request.setAttribute("exception", e);
-                url = "/error.jsp";
-            }
-            
-            getServletContext().getRequestDispatcher(url).forward(request, response);
     }
 
     /**

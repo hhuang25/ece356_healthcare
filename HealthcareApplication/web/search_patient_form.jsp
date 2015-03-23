@@ -5,6 +5,7 @@
 --%>
 <%@ include file="/master.jsp" %>
 <%@ include file="/auth.jsp" %>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -20,11 +21,22 @@
                     Lookup a Patient
                 </h2>
                 <div class="horizontal-center" style="width: 25%;">
-                    <form action="FindPatient" method="post">
+                    <form action="ViewPatientSearchResult" method="GET">
                         <p>Username Contains</p>
                         <input type="text" name="alias" size="45">
                         <p>City</p>
-                        <input type="text" size="45" name="city"><br/>
+                        <select name="city">
+                            <%! ArrayList<String> cities;%>
+                            <%
+                                cities = (ArrayList<String>) request.getAttribute("cities");
+                                for (String city : cities) {
+                            %>
+                            <option value="<%=city%>"><%=city%></option>
+                            <%
+                                }
+                            %>  
+                        </select>
+                        <br/>
                         <p>Province</p>
                         <select name="province" style="width: 347px;">
                             <option value="">Select One</option>
