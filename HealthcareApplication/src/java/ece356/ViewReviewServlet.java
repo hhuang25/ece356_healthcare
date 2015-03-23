@@ -46,7 +46,7 @@ public class ViewReviewServlet extends HttpServlet {
                 throw(e);
             }
             if (id == -1) {
-                getServletContext().getRequestDispatcher("/main.jsp").forward(request, response);
+                getServletContext().getRequestDispatcher("/404Page.jsp").forward(request, response);
                 return;
             }
         }
@@ -62,40 +62,44 @@ public class ViewReviewServlet extends HttpServlet {
                 call_statement.setInt(1, id);
                 
                 ResultSet result_set = call_statement.executeQuery();
-                result_set.next();
-                ReviewInfo review_info = new ReviewInfo();
-                Review r = new Review();
-                r.setRating(result_set.getFloat("rating"));
-                r.setReview(result_set.getString("review"));
-                r.setReviewDate(result_set.getTimestamp("review_date"));
-                r.setDoctorId(result_set.getInt("doctor_id"));
-                r.setId(result_set.getInt("id"));
-                review_info.setReview(r);
-                review_info.setDoctorName(result_set.getString("doctor_name"));
-                
-                call_statement = con.prepareCall(
-                        "{call NextReview(?, ?, ?)}"
-                );
-                call_statement.setInt(1, r.getId());
-                call_statement.setInt(2, r.getDoctorId());
-                call_statement.setInt(3, 1);
-                result_set = call_statement.executeQuery();
-                
-                if (result_set.isBeforeFirst()) {
-                    result_set.next();
-                    next_id = result_set.getInt("id");
+                if (result_set.next()) {
+                    ReviewInfo review_info = new ReviewInfo();
+                    Review r = new Review();
+                    r.setRating(result_set.getFloat("rating"));
+                    r.setReview(result_set.getString("review"));
+                    r.setReviewDate(result_set.getTimestamp("review_date"));
+                    r.setDoctorId(result_set.getInt("doctor_id"));
+                    r.setId(result_set.getInt("id"));
+                    review_info.setReview(r);
+                    review_info.setDoctorName(result_set.getString("doctor_name"));
+
+                    call_statement = con.prepareCall(
+                            "{call NextReview(?, ?, ?)}"
+                    );
+                    call_statement.setInt(1, r.getId());
+                    call_statement.setInt(2, r.getDoctorId());
+                    call_statement.setInt(3, 1);
+                    result_set = call_statement.executeQuery();
+
+                    if (result_set.isBeforeFirst()) {
+                        result_set.next();
+                        next_id = result_set.getInt("id");
+                    }
+                    call_statement.setInt(3, 0);
+                    result_set = call_statement.executeQuery();
+                    if (result_set.isBeforeFirst()) {
+                        result_set.next();
+                        previous_id = result_set.getInt("id");
+                    }
+                    request.setAttribute("next_id", next_id);
+                    request.setAttribute("previous_id", previous_id);
+                    con.close();
+                    request.setAttribute("review_info", review_info);
+                    url = "/view_review.jsp";
                 }
-                call_statement.setInt(3, 0);
-                result_set = call_statement.executeQuery();
-                if (result_set.isBeforeFirst()) {
-                    result_set.next();
-                    previous_id = result_set.getInt("id");
+                else {
+                    url = "/404Page.jsp";
                 }
-                request.setAttribute("next_id", next_id);
-                request.setAttribute("previous_id", previous_id);
-                con.close();
-                request.setAttribute("review_info", review_info);
-                url = "/view_review.jsp";
             } catch (Exception e) {
                 request.setAttribute("exception", e);
                 url = "/error.jsp";

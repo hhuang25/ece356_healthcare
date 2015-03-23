@@ -14,7 +14,7 @@
     <body>
         <%
             if (_patientId == -1) {
-                response.sendRedirect(request.getContextPath() + "/main.jsp");
+                response.sendRedirect(request.getContextPath() + "/404Page.jsp");
             }
         %>
         <div class="content default-padding">
@@ -150,7 +150,16 @@
                         <tr>
                             <td width="12%">
                                 Average Rating Threshold</td>
-                            <td><input type="number" name="rating_threshold" min="0" max="5"></td>
+                            <td>
+                                <input 
+                                    type="number"
+                                    name="rating_threshold"
+                                    min="0"
+                                    max="5"
+                                    step="0.5"
+                                    value="0"
+                                 >
+                            </td>
                         </tr>
                         <tr>
                             <td width="12%">Friend Reviewed</td>

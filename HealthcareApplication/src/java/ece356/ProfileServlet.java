@@ -129,6 +129,9 @@ public class ProfileServlet extends HttpServlet {
                     request.setAttribute("ViewProfileResult", result);
                     url = "/profile.jsp";
                 }
+                else {
+                    url = "/404Page.jsp";
+                }
             } catch (NamingException | SQLException | RuntimeException ex) {
                 request.setAttribute("exception", ex);
                 url = "/error.jsp";
@@ -142,9 +145,7 @@ public class ProfileServlet extends HttpServlet {
                     ps.close();
                 }
                 
-                if (con != null) {
-                    con.close();
-                }
+                DbConnectionUtil.closeConnection(con);
             }
         }
         else {

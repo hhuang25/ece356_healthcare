@@ -35,25 +35,25 @@ public class FindPatientServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String url;
+        String url = null;
         Connection con = null;
-        Statement stmt;
+        
         try {
             con = DbConnectionUtil.getConnection();
-            stmt = con.createStatement();
-            ArrayList<String> cities = new ArrayList<String>();
-            
-            // get cities
-            ResultSet rs = stmt.executeQuery("Select city from Region;");
-            while (rs.next()) {
-                cities.add(
-                    rs.getString("city")
-                );
+            try(Statement stmt = con.createStatement()){
+                ArrayList<String> cities = new ArrayList<String>();
+
+                // get cities
+                try(ResultSet rs = stmt.executeQuery("Select city from Region;")){
+                    while (rs.next()) {
+                        cities.add(
+                            rs.getString("city")
+                        );
+                    request.setAttribute("cities", cities);
+                    url = "/search_patient_form.jsp";
+                    }                    
+                }
             }
-            
-            request.setAttribute("cities", cities);
-            url = "/search_patient_form.jsp";
-            
         } catch (Exception e) {
              request.setAttribute("exception", e);
             url = "/error.jsp";

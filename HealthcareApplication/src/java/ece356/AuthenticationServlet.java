@@ -122,9 +122,7 @@ public class AuthenticationServlet extends HttpServlet {
                 userType.close();
             }
 
-            if (con != null) {
-                con.close();
-            }
+            DbConnectionUtil.closeConnection(con);
 
             getServletContext().getRequestDispatcher(url)
                     .forward(request, response);

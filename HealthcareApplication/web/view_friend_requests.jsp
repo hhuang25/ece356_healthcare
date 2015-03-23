@@ -14,7 +14,7 @@
     <body>
         <%
             if (_patientId == -1) {
-                response.sendRedirect(request.getContextPath() + "/main.jsp");
+                response.sendRedirect(request.getContextPath() + "/404Page.jsp");
             }
         %>
          <div class="content">
