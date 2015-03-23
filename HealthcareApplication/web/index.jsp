@@ -31,7 +31,7 @@
                 <p>... and more</p>
             </div>
             <div style="text-align: center; margin-top: 20px;">
-                <button class="button sign-up" onclick="window.location='login.jsp';">Sign In</button>
+                <button class="button large" onclick="window.location='login.jsp';">Sign In</button>
             </div>
             <br/><br/>
         </div>

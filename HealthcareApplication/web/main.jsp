@@ -11,10 +11,18 @@
 <!DOCTYPE html>
 <html>
     <body>
-        <div class="content default-padding">
+        <div class="content default-padding" style="text-align: center;">
             <h1>Welcome <%=_firstName%>!</h1>
-            <li><a href="FindDoctorServlet">Find Doctor</a></li>
-            <li><a href="ViewFriendRequests">View Friend Requests</a></li>
+            <table colspan="2" class="horizontal-center" style="border-collapse: separate; border-spacing: 15px 15px;">
+                <tr>
+                    <td>
+                        <button class="button large" onclick="window.location.href='FindDoctorServlet';" style="width: 250px;">Find Doctor</button>
+                    </td>
+                    <td>
+                        <button class="button large" onclick="window.location.href='ViewFriendRequests';" style="width: 250px;">View Friend Requests</button>
+                    </td>
+                </tr>
+            </table>
         </div>
         <%@ include file="/footer.jsp" %>
     </body>
