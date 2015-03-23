@@ -19,6 +19,17 @@
     <body>
         <div class="content">
             <%! ArrayList<DoctorReview> doctorReviews;%>
+        <table width="80%" class="review-table">
+            <tr>
+                <td>First Name</td>
+                <td>Middle Name</td>
+                <td>Last Name</td>
+                <td>Gender</td>
+                <td>Year License Obtained</td>
+                <td>Average Rating</td>
+                <td>Number of Reviews</td>
+                <td>Profile</td>
+            </tr>
         <%
             doctorReviews = (ArrayList<DoctorReview>) request.getAttribute(
                     "doctor_reviews"
@@ -29,16 +40,47 @@
             if(ds.getDoctor() != null){   
             %>
             <form method="post" action="ProfileServlet">
-                <%=ds.getDoctor().getFirstName()%>
-                <%=ds.getDoctor().getLastName()%>
-                <%=ds.getDoctor().getMiddleName()%>
-                <%=ds.getDoctor().getGender()%>
-                <%=ds.getDoctor().getYearLicenseObtained()%>
-                <%=ds.getAverageRating()%>
-                <%=ds.getNumberOfReviews()%>
-                <input type="hidden" value="<%=ds.getDoctor().getId()%>" name="docId">
-                <input type="hidden" value="<%=ds.getDoctor().getUserId()%>" name="user_id">
-                <input type="submit" value="View Profile">
+                    <tr>
+                        <td>
+                            <%=ds.getDoctor().getFirstName()%>
+                        </td>
+                            <%
+                            if(ds.getDoctor().getMiddleName() != null){
+                            %>
+                        <td>
+                            <%=ds.getDoctor().getMiddleName()%>
+                        </td>
+                            <%
+                            }else{
+                            %>
+                                <td>
+                                N/A
+                                </td>
+                            <%
+                            }
+                            %>
+                        <td>
+                            <%=ds.getDoctor().getLastName()%>
+                        </td>
+                        <td>
+                            <%=ds.getDoctor().getGender()%>
+                        </td>
+                        <td>
+                            <%=ds.getDoctor().getYearLicenseObtained()%>
+                        </td>
+                        <td>
+                            <%=ds.getAverageRating()%>
+                        </td>
+                        <td>
+                            <%=ds.getNumberOfReviews()%>
+                        </td>
+                        <td style="text-align: left;">
+                            <input type="submit" class="button small" value="View Profile">
+                        </td>
+                        <input type="hidden" value="<%=ds.getDoctor().getId()%>" name="docId">
+                        <input type="hidden" value="<%=ds.getDoctor().getUserId()%>" name="user_id">
+                    </tr>
+                
             </form>
                 <%        
                 }
@@ -46,6 +88,7 @@
         <%
             }
         %>
+        </table>
         </div>
         <%@ include file="/footer.jsp" %>
     </body>
