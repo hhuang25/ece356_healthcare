@@ -127,8 +127,16 @@
                     <legend>Doctor Attributes</legend>
                     <table>
                         <tr>
-                            <td width="12%">Year License Obtained</td>
-                            <td><input type="number" name="year_license_obtained" min="1800"></td>
+                            <td width="12%">Minimum Years Licensed</td>
+                            <td>
+                                <input 
+                                    type="number"
+                                    name="min_years_licensed"
+                                    min="0"
+                                    max="100"
+                                    value="0"
+                                >
+                            </td>
                         </tr>
                         <tr>
                             <td width="12%">Specialization</td>
