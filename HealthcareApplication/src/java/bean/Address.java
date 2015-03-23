@@ -11,10 +11,14 @@ package bean;
  */
 public class Address {
     private int id;
-    private int regionId;
     private String street;
     private int streetNumber;
     private String postalCode;
+    private Region region;
+    
+    public Address() {
+        region = new Region();
+    }
 
     /**
      * @return the id
@@ -28,20 +32,6 @@ public class Address {
      */
     public void setId(int id) {
         this.id = id;
-    }
-
-    /**
-     * @return the regionId
-     */
-    public int getRegionId() {
-        return regionId;
-    }
-
-    /**
-     * @param regionId the regionId to set
-     */
-    public void setRegionId(int regionId) {
-        this.regionId = regionId;
     }
 
     /**
@@ -84,5 +74,19 @@ public class Address {
      */
     public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
+    }
+
+    /**
+     * @return the region
+     */
+    public Region getRegion() {
+        return region;
+    }
+
+    /**
+     * @param region the region to set
+     */
+    public void setRegion(Region region) {
+        this.region = region;
     }
 }

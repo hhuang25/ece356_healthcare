@@ -197,3 +197,29 @@ ul.checkmark li:before {
 .default-padding {
     padding: 0 20px 20px 20px;
 }
+
+table.main-table {
+    border-collapse: separate; border-spacing: 15px 15px;
+}
+
+table.main-table button {
+    width: 250px !important;
+}
+
+table.side-green-table {
+    border-collapse: collapse;
+}
+
+table.side-green-table, table.side-green-table th, 
+table.side-green-table tr, table.side-green-table td {
+    border: 1px solid #07B388;
+}
+
+table.side-green-table > tbody > tr > td:first-child {
+    background: #00CC99;
+    color: #FFF;
+}
+
+table.side-green-table > tbody > tr td {
+    padding: 20px;
+}

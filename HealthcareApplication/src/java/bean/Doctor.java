@@ -85,6 +85,10 @@ public class Doctor {
      * @param gender the gender to set
      */
     public void setGender(String gender) {
+        if (Character.isLowerCase(gender.charAt(0))) {
+            gender = gender.substring(0, 1).toUpperCase() + gender.substring(1);
+        }
+
         this.gender = gender;
     }
 

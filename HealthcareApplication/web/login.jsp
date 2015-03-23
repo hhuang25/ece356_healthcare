@@ -25,7 +25,7 @@
                 <input type="text" name="username" value="<%=username%>" size="45">
                 <p>Password</p>
                 <input type="password" size="45" name="password"><br/>
-                <br/><br/>
+                <br/>
                 <input type="submit" value="Login" class="button small"><br/><br/>
                 <%
                     if (errorMessage != null) {

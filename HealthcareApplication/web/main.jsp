@@ -13,16 +13,21 @@
     <body>
         <div class="content default-padding" style="text-align: center;">
             <h1>Welcome <%=_firstName%>!</h1>
-            <table colspan="2" class="horizontal-center" style="border-collapse: separate; border-spacing: 15px 15px;">
+            <table colspan="2" class="horizontal-center main-table">
                 <tr>
                     <td>
-                        <button class="button large" onclick="window.location.href='FindDoctorServlet';" style="width: 250px;">Find Doctor</button>
+                        <button class="button large" onclick="window.location.href='FindDoctorServlet';">Find Doctor</button>
                     </td>
                     <td>
-                        <button class="button large" onclick="window.location.href='ViewFriendRequests';" style="width: 250px;">View Friend Requests</button>
+                        <button class="button large" onclick="window.location.href='ViewFriendRequests';">View Friend Requests</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button class="button large" onclick="window.location.href='ProfileServlet?docId=<%=_docId%>';">View Profile</button>
                     </td>
                     <td>
-                        <button class="button large" onclick="window.location.href='FindPatientServlet';" style="width: 250px;">Find Patients</button>
+                        <button class="button large" onclick="window.location.href='FindPatientServlet';">Find Patients</button>
                     </td>
                 </tr>
             </table>

@@ -12,24 +12,24 @@
 <% int _regionId = -1; %>
 <% int _docId = -1; %>
 <% int _patientId = -1; %>
-<% bean.Doctor doctor = (bean.Doctor)session.getAttribute("DoctorSession");
-   if (doctor != null) {
-       _docId = doctor.getId();
-       _firstName = doctor.getFirstName();
-       _middleName = doctor.getMiddleName();
-       _lastName = doctor.getLastName();
-       _gender = doctor.getGender();
-       _yearsLicensed = doctor.getYearLicenseObtained();
+<% bean.Doctor _doctor = (bean.Doctor)session.getAttribute("DoctorSession");
+   if (_doctor != null) {
+       _docId = _doctor.getId();
+       _firstName = _doctor.getFirstName();
+       _middleName = _doctor.getMiddleName();
+       _lastName = _doctor.getLastName();
+       _gender = _doctor.getGender();
+       _yearsLicensed = _doctor.getYearLicenseObtained();
    }
    else {
-        bean.Patient patient = (bean.Patient)session.getAttribute("PatientSession");
-        if (patient != null) {
-            _patientId = patient.getId();
-            _firstName = patient.getFirstName();
-            _middleName = patient.getMiddleName();
-            _lastName = patient.getLastName();
-            _gender = patient.getGender();
-            _regionId = patient.getRegionId();
+        bean.Patient _patient = (bean.Patient)session.getAttribute("PatientSession");
+        if (_patient != null) {
+            _patientId = _patient.getId();
+            _firstName = _patient.getFirstName();
+            _middleName = _patient.getMiddleName();
+            _lastName = _patient.getLastName();
+            _gender = _patient.getGender();
+            _regionId = _patient.getRegionId();
         }
    }
 %>
