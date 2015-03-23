@@ -70,7 +70,7 @@ public class ViewFriendRequests extends HttpServlet {
             }
         }
         else {
-            url = "/main.jsp";
+            url = "/404Page.jsp";
         }
 
         getServletContext().getRequestDispatcher(url).forward(request, response);

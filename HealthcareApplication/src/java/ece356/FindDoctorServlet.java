@@ -5,17 +5,13 @@
  */
 package ece356;
 
-import bean.Doctor;
 import bean.Patient;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import bean.User;
-import com.sun.org.apache.bcel.internal.generic.Type;
 import composite.DoctorReview;
 import java.util.ArrayList;
 import util.DbConnectionUtil;
