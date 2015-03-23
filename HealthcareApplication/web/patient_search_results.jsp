@@ -26,7 +26,16 @@
             Time of last review:<%=pr.getTimeReview()%>
             
             <input type="hidden" value="<%=pr.getPatient().getId()%>" name="patient_id">
-            <input type="submit" value="Add as Friend">
+            <% if (pr.getStatus() == 0) { %>
+                <input type="submit" value="Send Friend Request" name="friend_request">
+            <% } else if (pr.getStatus() == 1) { %>
+                Friend Request Sent
+            <% } else if (pr.getStatus() == 2) { %>
+                <input type="submit" value="Confirm Friend Request" name="friend_request">
+            <% } else { %>
+                <%=pr.getUser().getAlias()%> is your friend!
+            <% } %>
+            
         </form>
         <%
             }

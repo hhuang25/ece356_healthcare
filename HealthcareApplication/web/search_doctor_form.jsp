@@ -19,12 +19,15 @@
                 <legend>Personal Information</legend>
                 <table>
                 <tr>
-                    <td width="12%">First Name</td><td><input type="text" name="firstname"></td>
-                    <td width="15%" style="padding-left: 20px;">Last Name</td><td><input type="text" name="lastname"></td>
-                    <td width="12%" style="padding-left: 30px;">Gender</td>
+                    <td width="12%">First Name</td><td><input type="text" name="firstname" style="margin-right: 20px;"></td>
+                    <td width="15%">Middle Name</td><td><input type="text" name="middlename" style="margin-right: 20px;"></td>
+                    <td width="12%">Last Name</td><td><input type="text" name="lastname"></td>   
+                </tr>
+                <tr>
+                    <td width="12%">Gender</td>
                     <td style="display: inline-block; margin-top: -10px;">
-                        <input name="gender" type="radio" value="male" style="position: relative; top: 8px;"> Male
-                        <input name="gender" type="radio" value="female" style="position: relative; top: 8px;"> Female
+                        <input name="gender" type="radio" value="male" style="position: relative; top: 10px;"> Male
+                        <input name="gender" type="radio" value="female" style="position: relative; top: 10px;"> Female
                     </td>
                 </tr>
                 </table>
@@ -75,7 +78,7 @@
                         <tr>
                             <td width="12%">Specialization</td>
                             <td><select name="specialization" style="width: 160px;">
-                                <option>Select One</option>
+                                <option value="">Select One</option>
                         <%! ArrayList<String> specializations;%>
                         <%
                             specializations = (ArrayList<String>) request.getAttribute("specializations");
@@ -95,7 +98,7 @@
                         <tr>
                             <td width="12%">Friend Reviewed</td>
                             <td><input type="checkbox" name="friend_reviewed" style="position: relative; top: 3px;"></td>
-                    </tr>
+                        </tr>
                     </table>
                 </fieldset><br/>
                 <fieldset>

@@ -17,6 +17,7 @@ public class PatientResult {
     private Region region;
     private int num_review;
     private Timestamp last_review_date;
+    private int status;
     
     public void setPatient(Patient p) {
         this.patient = p;
@@ -57,4 +58,21 @@ public class PatientResult {
     public Timestamp getTimeReview() {
         return this.last_review_date;
     }
+    
+    public void setStatus(int incoming_status, int outgoing_status) {
+        if (incoming_status == 0 && outgoing_status == 0) {
+            this.status = 0; // no social relationship
+        } else if (incoming_status == 0 && outgoing_status == 1) {
+            this.status = 1; // youve already sent a friend request
+        } else if (incoming_status == 1 && outgoing_status == 0) {
+            this.status = 2; // you must confirm friendship
+        } else {
+            this.status = 3;
+        }
+    }
+    
+    public int getStatus() {
+            return this.status;
+    }
+    
 }

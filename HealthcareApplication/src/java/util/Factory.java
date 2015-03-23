@@ -8,6 +8,7 @@ package util;
 import bean.Doctor;
 import bean.Patient;
 import bean.User;
+import composite.DoctorReview;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -46,6 +47,24 @@ public class Factory {
         }
         
         return doctor;
+    }
+    
+    public static DoctorReview CreateDoctorReview(ResultSet rs) {
+        DoctorReview doctorReview = new DoctorReview();
+        try {
+            doctorReview.getDoctor().setId(rs.getInt("id"));
+            doctorReview.getDoctor().setFirstName(rs.getString("first_name"));
+            doctorReview.getDoctor().setMiddleName(rs.getString("middle_name"));
+            doctorReview.getDoctor().setLastName(rs.getString("last_name"));
+            doctorReview.getDoctor().setGender(rs.getString("gender"));
+            doctorReview.setAverageRating(rs.getDouble("average_rating"));
+            doctorReview.setNumberOfReviews(rs.getInt("num_of_reviews"));
+        }
+        catch (SQLException e) {
+            System.out.println(e);
+        }
+        
+        return doctorReview;
     }
     
     public static Patient CreatePatient(ResultSet rs) {

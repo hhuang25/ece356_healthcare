@@ -5,6 +5,8 @@
  */
 package ece356;
 
+import bean.Doctor;
+import bean.Patient;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -13,9 +15,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import bean.User;
+import com.sun.org.apache.bcel.internal.generic.Type;
+import composite.DoctorReview;
 import java.util.ArrayList;
 import util.DbConnectionUtil;
 import java.sql.*;
+import util.Factory;
+import util.NumberUtil;
 
 /**
  *
@@ -74,7 +80,76 @@ public class FindDoctorServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        Patient logged_in_patient = (Patient)request.getSession().getAttribute(
+                "PatientSession");
+        String url;
+        Connection con = null;
+        try{
+            String firstName = request.getParameter("firstname").trim();
+            String middleName = request.getParameter("middlename").trim();
+            String lastName = request.getParameter("lastname").trim();
+            String gender = request.getParameter("gender");
+            String city = request.getParameter("city").trim();
+            String province = request.getParameter("province").trim();
+            String streetNumber = request.getParameter("street_number").trim();
+            String street = request.getParameter("street").trim();
+            String postalCode = request.getParameter("postal_code").trim();
+            String yearLicenseObtained = request.getParameter("year_license_obtained").trim();
+            String specializationName = request.getParameter("specialization");
+            String ratingThreshold = request.getParameter("rating_threshold").trim();
+            boolean friendsReviewed = (request.getParameter("friend_reviewed") != null);
+            String wordsInReview = request.getParameter("keyword").trim();
+            
+            con = DbConnectionUtil.getConnection();
+            int pIndex = 2;
+            try(PreparedStatement psmt = con.prepareCall(
+                    "{call FlexibleDoctorSearch(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}")){
+                
+                psmt.setInt(1, logged_in_patient.getId());
+                psmt.setString(pIndex++, firstName);
+                psmt.setString(pIndex++, lastName);
+                psmt.setString(pIndex++, middleName);
+                psmt.setString(pIndex++, gender);
+                psmt.setString(pIndex++, street);
+                if(NumberUtil.isInteger(streetNumber)){
+                    psmt.setInt(pIndex++, Integer.parseInt(streetNumber));
+                }else{
+                    psmt.setNull(pIndex++, Types.NULL);
+                }
+                psmt.setString(pIndex++, city);
+                psmt.setString(pIndex++, province);
+                psmt.setString(pIndex++, postalCode);
+                if(NumberUtil.isInteger(yearLicenseObtained)){
+                    psmt.setInt(pIndex++, Integer.parseInt(yearLicenseObtained));
+                }else{
+                    psmt.setNull(pIndex++, Types.NULL);
+                }
+                psmt.setString(pIndex++, specializationName);
+                if(NumberUtil.isDouble(ratingThreshold)){
+                    psmt.setDouble(pIndex++, Double.parseDouble(ratingThreshold));
+                }else{
+                    psmt.setNull(pIndex++, Types.NULL);
+                }
+                psmt.setBoolean(pIndex++, friendsReviewed);
+                psmt.setString(pIndex++, wordsInReview);
+                try(ResultSet rs = psmt.executeQuery()){
+                    ArrayList<DoctorReview> doctorReviews = new ArrayList<DoctorReview>();
+                    while (rs.next()) {
+                        DoctorReview docRev = Factory.CreateDoctorReview(rs);
+                        doctorReviews.add(docRev);
+                    }
+                    con.close();
+                    request.setAttribute("doctor_reviews", doctorReviews);
+                    url = "/search_doctor_results.jsp";
+                }
+            }
+        } catch (Exception e) {
+            request.setAttribute("exception", e);
+            url = "/error.jsp";
+        }finally{
+            DbConnectionUtil.closeConnection(con);
+        }
+        getServletContext().getRequestDispatcher(url).forward(request, response);
     }
 
     /**

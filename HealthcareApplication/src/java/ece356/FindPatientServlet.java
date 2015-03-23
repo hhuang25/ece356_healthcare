@@ -54,16 +54,20 @@ public class FindPatientServlet extends HttpServlet {
             String alias_keyword = request.getParameter("alias");
             String province = request.getParameter("province");
             String city = request.getParameter("city");
+            Patient logged_in_patient = (Patient)request.getSession().getAttribute(
+                "PatientSession"
+            );
             Connection con;
             String url;
             try {
                 con = DbConnectionUtil.getConnection();
                 PreparedStatement call_statement = con.prepareCall(
-                        "{call PatientSearch(?, ?, ?)}"
+                        "{call PatientSearch(?, ?, ?, ?)}"
                 );
                 call_statement.setString(1, alias_keyword);
                 call_statement.setString(2, province);
                 call_statement.setString(3, city);
+                call_statement.setInt(4, logged_in_patient.getId());
                 
                 ResultSet result_set = call_statement.executeQuery();
 
@@ -76,13 +80,17 @@ public class FindPatientServlet extends HttpServlet {
                     u.setAlias(result_set.getString("alias"));
                     Region r = new Region();
                     r.setCity(result_set.getString("city"));
-                    r.setCity(result_set.getString("province"));
+                    r.setProvince(result_set.getString("province"));
                     PatientResult pr = new PatientResult();
                     pr.setUser(u);
                     pr.setPatient(p);
                     pr.setRegion(r);
                     pr.setNumReview(result_set.getInt("num_of_reviews"));
                     pr.setTimeReview(result_set.getTimestamp("last_review_date"));
+                    pr.setStatus(
+                            result_set.getInt("incoming_status"),
+                            result_set.getInt("outgoing_status")
+                    );
                     patient_info.add(pr);
                 }
                 
