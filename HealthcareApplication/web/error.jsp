@@ -20,7 +20,6 @@
 
         <div class="content" style="text-align: center;">
             <h2>Looks like something went wrong</h2>
-            <p><%= errorMessage %></p>
             <p><button class="button large" onclick="window.location='index.jsp<%=query%>';">Return Home</button></p>
         </div>
         <%@ include file="/footer.jsp" %>
