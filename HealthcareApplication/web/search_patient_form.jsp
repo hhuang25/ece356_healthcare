@@ -47,6 +47,7 @@
                             <option>Alberta</option>
                             <option>Saskatchewan</option>
                             <option>Manitoba</option>
+                            <option>Prince Edward Island</option>
                             <option>Nova Scotia</option>
                             <option>New Brunswick</option>
                             <option>Newfoundland and Labrador</option>
