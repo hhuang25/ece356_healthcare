@@ -160,14 +160,19 @@
                             <td width="12%">
                                 Average Rating Threshold</td>
                             <td>
-                                <input 
-                                    type="number"
-                                    name="rating_threshold"
-                                    min="0"
-                                    max="5"
-                                    step="0.5"
-                                    value="0"
-                                 >
+                                <select name="rating_threshold">
+                                    <option>0</option>
+                                    <option>0.5</option>
+                                    <option>1.0</option>
+                                    <option>1.5</option>
+                                    <option>2.0</option>
+                                    <option>2.5</option>
+                                    <option>3.0</option>
+                                    <option>3.5</option>
+                                    <option>4.0</option>
+                                    <option>4.5</option>
+                                    <option>5.0</option>
+                                </select>
                             </td>
                         </tr>
                         <tr>
