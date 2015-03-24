@@ -21,6 +21,11 @@
         <div class="content">
             <%! ArrayList<DoctorReview> doctorReviews;%>
         <table width="80%" class="review-table">
+            <thead>
+                    <tr>
+                        <th colspan="5"><h2 style="text-align:left">Doctor Search Results</h2></th>
+                    </tr>
+            </thead>
             <tr>
                 <td>First Name</td>
                 <td>Middle Name</td>
