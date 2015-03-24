@@ -37,6 +37,7 @@ public class ProfileServlet extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
+     * @throws java.sql.SQLException
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
@@ -55,7 +56,7 @@ public class ProfileServlet extends HttpServlet {
             }
             
             if (id == -1) {
-                getServletContext().getRequestDispatcher("/main.jsp")
+                getServletContext().getRequestDispatcher("/404Page.jsp")
                                    .forward(request, response);
                 return;
             }
@@ -67,7 +68,7 @@ public class ProfileServlet extends HttpServlet {
 
             try {
                 con = DbConnectionUtil.getConnection();
-                String userString = "SELECT user_id FROM Doctor WHERE user_id = ?;"; 
+                String userString = "SELECT user_id FROM Doctor WHERE id = ?;"; 
                 ps = con.prepareStatement(userString);
                 ps.setInt(1, id);
                 ResultSet rs = ps.executeQuery();

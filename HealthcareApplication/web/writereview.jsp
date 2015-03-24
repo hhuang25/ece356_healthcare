@@ -43,7 +43,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Review<br/>(1000 character limit)</td>
+                            <td>Review<br/>(1000 characters limit)</td>
                             <td><textarea name="review" cols="50" rows="15" class="review" required></textarea></td>
                         </tr>
                     </table>
