@@ -105,6 +105,7 @@ public class WriteReviewServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = "/writereview.jsp";
         String errorMessage = "";
+        Boolean success = false;
 
         String rating = request.getParameter("rating").trim();
         String review = request.getParameter("review").trim();
@@ -137,6 +138,7 @@ public class WriteReviewServlet extends HttpServlet {
                 cs.setString(4, review);
                 cs.executeQuery();
                 url = "/Profile?docId=" + doctorId;
+                success = true;
             } catch (SQLException | NamingException ex) {
                 request.setAttribute("exception", ex);
                 url = "/error.jsp";
@@ -155,7 +157,12 @@ public class WriteReviewServlet extends HttpServlet {
             }
         }
         
-        getServletContext().getRequestDispatcher(url).forward(request, response);
+        if (success) {
+            response.sendRedirect(request.getContextPath() + url);
+        }
+        else {
+            getServletContext().getRequestDispatcher(url).forward(request, response);
+        }
     }
 
     /**
