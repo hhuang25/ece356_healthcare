@@ -5,6 +5,7 @@
  */
 package ece356;
 
+import bean.Doctor;
 import bean.Review;
 import composite.ReviewInfo;
 import java.sql.*;
@@ -70,6 +71,14 @@ public class ViewReviewServlet extends HttpServlet {
                     r.setReviewDate(result_set.getTimestamp("review_date"));
                     r.setDoctorId(result_set.getInt("doctor_id"));
                     r.setId(result_set.getInt("id"));
+                    
+                    Doctor currentDoctor = (Doctor) request.getSession()
+                                                           .getAttribute("DoctorSession");
+                    if (currentDoctor != null && currentDoctor.getId() != r.getDoctorId()) {
+                        getServletContext().getRequestDispatcher("/404Page.jsp").forward(request, response);
+                        return;
+                    }
+                    
                     review_info.setReview(r);
                     review_info.setDoctorName(result_set.getString("doctor_name"));
 

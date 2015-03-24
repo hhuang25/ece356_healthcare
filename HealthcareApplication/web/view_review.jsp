@@ -13,11 +13,6 @@
 <!DOCTYPE html>
 <html>
     <body>
-        <%
-            if (_patientId == -1) {
-                response.sendRedirect(request.getContextPath() + "/404Page.jsp");
-            }
-        %>
         <div class="content">
             <% ReviewInfo review_info = (ReviewInfo) request.getAttribute("review_info"); %>
             <%=review_info.getReview().getRating()%>
