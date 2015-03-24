@@ -28,6 +28,7 @@ fieldset {
     border-radius: 8px;
     -moz-border-radius: 8px;
     -webkit-border-radius: 8px;
+    border: 1px solid #ccc;
 }
 
 textarea {
@@ -476,4 +477,9 @@ textarea.review {
     .star-icon.half:before {
         top: 1px;
     }
+}
+
+table.view-review-table {
+    border-radius: 4px;
+    border: 1px solid #00CC99;
 }

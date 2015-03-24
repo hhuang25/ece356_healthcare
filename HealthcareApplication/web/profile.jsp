@@ -56,7 +56,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td width="50%">
+                        <td width="50%" style="vertical-align: top;">
                             <table width="100%" class="side-green-table">
                                 <tbody>
                                     <tr>
@@ -153,7 +153,7 @@
                                   for (Review review: result.getReviews()) {
                                 %>
                                     <tr>
-                                        <td>
+                                        <td style="width: 80%;">
                                             <b>Reviewed on <%=new SimpleDateFormat("MM/dd/yyyy | h:mm a").format(new Date(review.getReviewDate().getTime()))%></b>
                                             <br/>Rated
                                             <div style="display: inline-block; margin-left: 15px;">
