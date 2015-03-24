@@ -155,22 +155,38 @@
                                     <tr>
                                         <td>
                                             <b>Reviewed on <%=new SimpleDateFormat("MM/dd/yyyy").format(new Date(review.getReviewDate().getTime()))%></b>
-                                            <br/>Rated 
+                                            <br/>Rated
+                                            <div style="display: inline-block; margin-left: 15px;">
                                             <% 
-                                                int i = 0;
-                                                for (i = 0; i < review.getRating(); i++) {
+                                                double rating = review.getRating();
+                                                double c = 0;
+                                                if (rating == Math.floor(rating)) {
+                                                    for (c = 0; c < rating; c++) {
                                             %>
-                                                ★
+                                                <span class="star-icon full">☆</span>
+                                            <% } %>
                                             <%
-                                            }
+                                              for (double x = c; x < 5; x++) {
                                             %>
+                                                <span class="star-icon">☆</span>
                                             <%
-                                              for (int x = i; x < 5; x++) {
+                                                }
+                                              } else {
+                                                rating = rating - 0.5;
+                                                for (c = 0; c < rating; c++) {
                                             %>
-                                                ✰
+                                                <span class="star-icon full">☆</span>
+                                            <% } %>
+                                            <span class="star-icon half">☆</span>
                                             <%
-                                              }
+                                              for (double x = c + 1; x < 5; x++) {
                                             %>
+                                                <span class="star-icon">☆</span>
+                                            <%
+                                                    }
+                                                }
+                                            %>
+                                            </div>
                                         </td>
                                         <td style="text-align: right;">
                                             <button class="button small" onclick="window.location.href='ViewReview?review_id=<%=review.getId()%>';">View</button>

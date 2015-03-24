@@ -438,3 +438,42 @@ table.write-review-table td:last-child {
 textarea.review {
     resize: none;
 }
+
+.star-icon {
+    color: #ddd;
+    font-size: 2em;
+    position: relative;
+    top: 3px;
+}
+
+.star-icon.full:before {
+    color: #FDE16D;
+    content: '\2605'; /* Full star in UTF-8 */
+    position: absolute;
+    left: 0;
+}
+
+.star-icon.half:before {
+    color: #FDE16D;
+    content: '\2605'; /* Full star in UTF-8 */
+    position: absolute;
+    left: 0;
+    width: 50%;
+    overflow: hidden;
+}
+
+@-moz-document url-prefix() { /* Firefox Hack :( */
+    .star-icon {
+        font-size: 28px;
+        line-height: 34px;
+        top: 3px;
+    }
+    
+    .star-icon.full:before {
+        top: 3px;
+    }
+
+    .star-icon.half:before {
+        top: 3px;
+    }
+}
