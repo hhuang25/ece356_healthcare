@@ -83,37 +83,7 @@
                                     <tr>
                                         <td width="50%">Average Rating</td>
                                         <td>
-                                            <div style="display: inline-block;">
-                                            <% 
-                                                double rating = result.getAverageRating();
-                                                double c = 0;
-                                                if (rating == Math.floor(rating)) {
-                                                    for (c = 0; c < rating; c++) {
-                                            %>
-                                                <span class="star-icon full">☆</span>
-                                            <% } %>
-                                            <%
-                                              for (double x = c; x < 5; x++) {
-                                            %>
-                                                <span class="star-icon">☆</span>
-                                            <%
-                                                }
-                                              } else {
-                                                rating = rating - 0.5;
-                                                for (c = 0; c < rating; c++) {
-                                            %>
-                                                <span class="star-icon full">☆</span>
-                                            <% } %>
-                                            <span class="star-icon half">☆</span>
-                                            <%
-                                              for (double x = c + 1; x < 5; x++) {
-                                            %>
-                                                <span class="star-icon">☆</span>
-                                            <%
-                                                    }
-                                                }
-                                            %>
-                                            </div>
+                                            <%=result.getAverageRating()%>/5.0
                                         </td>
                                     </tr>
                                     <tr>
@@ -191,8 +161,8 @@
                                             <br/>Rated
                                             <div style="display: inline-block; margin-left: 15px;">
                                             <% 
-                                                rating = review.getRating();
-                                                c = 0;
+                                                double rating = review.getRating();
+                                                double c = 0;
                                                 if (rating == Math.floor(rating)) {
                                                     for (c = 0; c < rating; c++) {
                                             %>
