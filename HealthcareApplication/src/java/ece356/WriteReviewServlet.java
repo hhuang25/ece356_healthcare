@@ -136,6 +136,7 @@ public class WriteReviewServlet extends HttpServlet {
                 cs.setDouble(3, ratingValue);
                 cs.setString(4, review);
                 cs.executeQuery();
+                url = "/Profile?docId=" + doctorId;
             } catch (SQLException | NamingException ex) {
                 request.setAttribute("exception", ex);
                 url = "/error.jsp";
