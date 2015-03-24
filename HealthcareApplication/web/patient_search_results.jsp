@@ -6,6 +6,8 @@
     AND MAKE RESULTING MODIFICCATIOSN HERE!
 --%>
 
+<%@page import="java.sql.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@ include file="/master.jsp" %>
 <%@ include file="/auth.jsp" %>
 
@@ -20,59 +22,73 @@
                 response.sendRedirect(request.getContextPath() + "/404Page.jsp");
             }
         %>
-        <table width="90%" class="review-table">
-            <thead>
-                    <tr>
-                        <th colspan="5"><h2>Social</h2></th>
-                    </tr>
-            </thead>
-            <tr>
-                <td>Alias</td>
-                <td>City</td>
-                <td>Province</td>
-                <td>Number of Reviews</td>
-                <td>Time of Last Review</td>
-                <td>Status</td>
-            </tr>
         <%! ArrayList<PatientResult> patient_info;%>
         <%
             patient_info = (ArrayList<PatientResult>) request.getAttribute(
                     "patient_info"
             );
-            for (PatientResult pr : patient_info) {
         %>
-        <form method="post" action="ViewPatientSearchResult">
-            <tr>
-                <td><%=pr.getUser().getAlias()%></td>
-                <td><%=pr.getRegion().getCity()%></td>
-                <td><%=pr.getRegion().getProvince()%></td>
-                <td><%=pr.getNumReview()%></td>
+        <div class="content default-padding">
+            <h2>Patient Search Results (<%=patient_info.size()%>)</h2>
+            <%
+                if (patient_info.size() > 0) {
+            %>
+                <table width="90%" class="list-table">
+                    <thead>
+                        <tr>
+                            <th>Alias</th>
+                            <th>City</th>
+                            <th>Province</th>
+                            <th>Number of Reviews</th>
+                            <th>Time of Last Review</th>
+                            <th>Friendship Status</th>
+                        </tr>
+                    </thead>
                 <%
-                if(pr.getTimeReview() != null){
+                    for (PatientResult pr : patient_info) {
                 %>
-                    <td><%=pr.getTimeReview()%></td>
-                <%
-                }else{
-                %>
-                <td>No reviews</td>
+                <form method="post" action="ViewPatientSearchResult">
+                    <tr>
+                        <td><%=pr.getUser().getAlias()%></td>
+                        <td><%=pr.getRegion().getCity()%></td>
+                        <td><%=pr.getRegion().getProvince()%></td>
+                        <td><%=pr.getNumReview()%></td>
+                        <%
+                        if(pr.getTimeReview() != null){
+                        %>
+                            <td><%=new SimpleDateFormat("MM/dd/yyyy | h:mm a").format(new Date(pr.getTimeReview().getTime()))%></td>
+                        <%
+                        }else{
+                        %>
+                        <td>No reviews</td>
+                        <%
+                            }
+                        %>
+                    <input type="hidden" value="<%=pr.getPatient().getId()%>" name="patient_id">
+                    <% if (pr.getStatus() == 0) { %>
+                        <td><input type="submit" class="button wide" value="Send Request" name="friend_request"></td>
+                    <% } else if (pr.getStatus() == 1) { %>
+                        <td>Friend Request Sent</td>
+                    <% } else if (pr.getStatus() == 2) { %>
+                        <td><input type="submit" class="button wide" value="Confirm Request" name="friend_request"></td>
+                    <% } else { %>
+                        <td>Your Friend</td>
+                    <% } %>
+                     </tr>
+                </form>
                 <%
                     }
                 %>
-            <input type="hidden" value="<%=pr.getPatient().getId()%>" name="patient_id">
-            <% if (pr.getStatus() == 0) { %>
-                <td><input type="submit" class="button wide" value="Send Friend Request" name="friend_request"></td>
-            <% } else if (pr.getStatus() == 1) { %>
-                <td>Friend Request Sent</td>
-            <% } else if (pr.getStatus() == 2) { %>
-                <td><input type="submit" class="button wide" value="Confirm Friend Request" name="friend_request"></td>
-            <% } else { %>
-                <td><%=pr.getUser().getAlias()%> is your friend!</td>
-            <% } %>
-             </tr>
-        </form>
-        <%
+                </table>
+            <%
+            } else {
+            %>
+            <p>Your search returned no results.</p>
+            <%
             }
-        %>
-        </table>
+            %>
+            <p><button class="button large" onclick="history.back()">Back</button></p>
+        </div>
+        <%@ include file="/footer.jsp" %>
     </body>
 </html>

@@ -154,11 +154,13 @@ div.features {
     height: 40px;
     font-size: 20px;
 }
+
 .button.wide {
     width: 240px;
     height: 40px;
     font-size: 20px;
 }
+
 .inverted-button {
     color: #00CC99;
     background: #FFF;
@@ -533,4 +535,23 @@ div.quote.end-quote {
     background: url("../img/end_quote.png");
     background-repeat: no-repeat;
     margin-left: 5px;
+}
+
+table.list-table {
+    border: 1px solid #07B388;
+    border-collapse: collapse;
+}
+
+table.list-table th {
+    background: #00CC99;
+    color: #FFF;
+}
+
+table.list-table th, table.list-table tr, table.list-table td {
+    border: 1px solid #07B388;
+    padding: 15px;
+}
+
+table.list-table tr:hover {
+    background: #B0F6CB;
 }

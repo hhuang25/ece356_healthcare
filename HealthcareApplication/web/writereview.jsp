@@ -62,14 +62,14 @@
                 <div style="text-align: center;">
                     <h2>Your Review could not be Submitted</h2>
                     <p><%=error%></p>
-                    <p><button class="button large" onclick="window.location='index.jsp<%=query%>';">Return</button></p>
+                    <p><button class="button large" onclick="history.back()">Return</button></p>
                 </div>
                     <%
                     } else {
                     %>
                     <div style="text-align: center;">
                        <h2>Your Review was successfully submitted</h2>
-                       <p><button class="button large" onclick="window.location='index.jsp<%=query%>';">Return</button></p>
+                       <p><button class="button large" onclick="history.back()">Return</button></p>
                    </div>
                   <%
                     }
