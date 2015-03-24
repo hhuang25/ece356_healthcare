@@ -82,7 +82,7 @@
                                     name="postal_code"
                                     size="6"
                                     maxlength="6"
-                                    pattern="^[ABCEGHJKLMNPRSTVXY]{1}\d{1}[A-Z]{1}\d{1}[A-Z]{1}\d{1}$"
+                                    pattern="^[abceghjklmnprstvxyABCEGHJKLMNPRSTVXY]{1}\d{1}[a-zA-Z]{1}\d{1}[a-zA-Z]{1}\d{1}$"
                                     title="A1A1A1"
                                 >
                             </td>

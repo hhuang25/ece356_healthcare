@@ -21,12 +21,16 @@
         <div class="content">
             <%! ArrayList<DoctorReview> doctorReviews;%>
         <table width="80%" class="review-table">
+            <thead>
+                    <tr>
+                        <th colspan="5"><h2 style="text-align:left">Doctor Search Results</h2></th>
+                    </tr>
+            </thead>
             <tr>
                 <td>First Name</td>
                 <td>Middle Name</td>
                 <td>Last Name</td>
                 <td>Gender</td>
-                <td>Year License Obtained</td>
                 <td>Average Rating</td>
                 <td>Number of Reviews</td>
                 <td>Profile</td>
@@ -65,9 +69,6 @@
                         </td>
                         <td>
                             <%=ds.getDoctor().getGender()%>
-                        </td>
-                        <td>
-                            <%=ds.getDoctor().getYearLicenseObtained()%>
                         </td>
                         <td>
                             <%=ds.getAverageRating()%>
