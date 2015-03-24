@@ -96,9 +96,31 @@ div.passage {
     padding: 25px;
 }
 
+@keyframes flyin {
+   to { 
+     filter: blur(0);
+     transform: scale(1);
+     opacity: 1;
+   }
+}
+
+@-webkit-keyframes flyin {
+   to { 
+     filter: blur(0);
+     -webkit-transform: scale(1);
+     opacity: 1;
+   }
+}
+
 div.passage > h1 {
     font-family: "Samba";
     font-size: 40px;
+    animation: flyin 1.2s ease forwards;
+    -webkit-animation: flyin 1.2s ease forwards;
+    opacity: 0;
+    transform: scale(2);
+    -webkit-transform: scale(2);
+    filter: blur(4px);
 }
 
 .horizontal-center {
