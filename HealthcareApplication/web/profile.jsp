@@ -111,11 +111,22 @@
                                         <td width="50%">Specialization(s)</td>
                                         <td>
                                             <%
+                                                int counter = 0;
+                                            %>
+                                            <%
                                                 for(Specialization s: result.getSpecializations()) {
+                                                    counter++;
                                             %>
                                                 <%=s.getSpecialization()%><br/>
                                             <%
                                               }
+                                            %>
+                                            <%
+                                                if (counter == 0) {
+                                            %>
+                                                None
+                                            <%
+                                                }
                                             %>
                                         </td>
                                     </tr>

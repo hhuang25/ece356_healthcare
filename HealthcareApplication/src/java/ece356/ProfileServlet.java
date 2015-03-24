@@ -63,76 +63,66 @@ public class ProfileServlet extends HttpServlet {
 
             Connection con = null;
             PreparedStatement cs = null;
-            PreparedStatement ps = null;
             ViewProfileResult result = new ViewProfileResult();
 
             try {
                 con = DbConnectionUtil.getConnection();
-                String userString = "SELECT user_id FROM Doctor WHERE id = ?;"; 
-                ps = con.prepareStatement(userString);
-                ps.setInt(1, id);
-                ResultSet rs = ps.executeQuery();
-                if (rs.next()) {
-                    cs = con.prepareCall("{call DoctorProfile(?, ?)}");
-                    cs.setInt(1, id);
-                    cs.setInt(2, rs.getInt(1));
-                    rs = cs.executeQuery();
-                    rs.next();
 
-                    Doctor doctor = Factory.CreateDoctor(rs);
-                    result.setDoctor(doctor);
-                    result.setEmail(rs.getString("email"));
-                    result.setAverageRating(rs.getLong("average_rating"));
-                    result.setYearsLicensed(rs.getInt("years_licensed"));
-                    result.setNumOfReviews(rs.getInt("num_of_reviews"));
-                    
-                    ArrayList<Specialization> specializations = 
-                            result.getSpecializations();
-                    cs = con.prepareCall("{call GetSpecializations(?)}");
-                    cs.setInt(1, id);
-                    rs = cs.executeQuery();
-                    while (rs.next()) {
-                        Specialization specialization = new Specialization();
-                        specialization.setId(rs.getInt("specialization_id"));
-                        specialization.setSpecialization(rs.getString("specialization"));
-                        specializations.add(specialization);
-                    }
-                    
-                    ArrayList<Address> addresses = 
-                            result.getAddresses();
-                    cs = con.prepareCall("{call GetDoctorAddresses(?)}");
-                    cs.setInt(1, id);
-                    rs = cs.executeQuery();
-                    while (rs.next()) {
-                        Address address = new Address();
-                        address.setId(rs.getInt("address_id"));
-                        address.setStreet(rs.getString("street"));
-                        address.setStreetNumber(rs.getInt("street_number"));
-                        address.setPostalCode(rs.getString("postal_code"));
-                        address.getRegion().setCity(rs.getString("city"));
-                        address.getRegion().setProvince(rs.getString("province"));
-                        addresses.add(address);
-                    }
-                    
-                    String reviewString = "Select * from Review as r Where r.doctor_id = ? ORDER BY review_date DESC;";
-                    ps = con.prepareStatement(reviewString);
-                    ps.setInt(1, id);
-                    rs = ps.executeQuery();
-                    ArrayList<Review> reviews = result.getReviews();
-                    while(rs.next()) {
-                        Review review = new Review();
-                        review.setId(rs.getInt("id"));
-                        review.setReviewDate(rs.getTimestamp("review_date"));
-                        review.setRating(rs.getInt("rating"));
-                        reviews.add(review);
-                    }
+                cs = con.prepareCall("{call DoctorProfile(?)}");
+                cs.setInt(1, id);
+                ResultSet rs = cs.executeQuery();
+                rs.next();
 
-                    request.setAttribute("ViewProfileResult", result);
-                    url = "/profile.jsp";
+                Doctor doctor = Factory.CreateDoctor(rs);
+                result.setDoctor(doctor);
+                result.setEmail(rs.getString("email"));
+                result.setAverageRating(rs.getDouble("average_rating"));
+                result.setYearsLicensed(rs.getInt("years_licensed"));
+                result.setNumOfReviews(rs.getInt("num_of_reviews"));
+                    
+                ArrayList<Specialization> specializations = 
+                        result.getSpecializations();
+                cs = con.prepareCall("{call GetSpecializations(?)}");
+                cs.setInt(1, id);
+                rs = cs.executeQuery();
+                while (rs.next()) {
+                    Specialization specialization = new Specialization();
+                    specialization.setId(rs.getInt("specialization_id"));
+                    specialization.setSpecialization(rs.getString("specialization"));
+                    specializations.add(specialization);
                 }
-                else {
-                    url = "/404Page.jsp";
+
+                ArrayList<Address> addresses = 
+                        result.getAddresses();
+                cs = con.prepareCall("{call GetDoctorAddresses(?)}");
+                cs.setInt(1, id);
+                rs = cs.executeQuery();
+                while (rs.next()) {
+                    Address address = new Address();
+                    address.setId(rs.getInt("address_id"));
+                    address.setStreet(rs.getString("street"));
+                    address.setStreetNumber(rs.getInt("street_number"));
+                    address.setPostalCode(rs.getString("postal_code"));
+                    address.getRegion().setCity(rs.getString("city"));
+                    address.getRegion().setProvince(rs.getString("province"));
+                    addresses.add(address);
                 }
+
+                String reviewString = "Select * from Review as r Where r.doctor_id = ? ORDER BY review_date DESC;";
+                cs = con.prepareStatement(reviewString);
+                cs.setInt(1, id);
+                rs = cs.executeQuery();
+                ArrayList<Review> reviews = result.getReviews();
+                while(rs.next()) {
+                    Review review = new Review();
+                    review.setId(rs.getInt("id"));
+                    review.setReviewDate(rs.getTimestamp("review_date"));
+                    review.setRating(rs.getDouble("rating"));
+                    reviews.add(review);
+                }
+
+                request.setAttribute("ViewProfileResult", result);
+                url = "/profile.jsp";
             } catch (NamingException | SQLException | RuntimeException ex) {
                 request.setAttribute("exception", ex);
                 url = "/error.jsp";
@@ -141,11 +131,7 @@ public class ProfileServlet extends HttpServlet {
                 if (cs != null) {
                     cs.close();
                 }
-                
-                if (ps != null) {
-                    ps.close();
-                }
-                
+
                 DbConnectionUtil.closeConnection(con);
             }
         }
