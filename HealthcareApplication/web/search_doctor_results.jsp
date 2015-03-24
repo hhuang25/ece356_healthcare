@@ -31,7 +31,6 @@
                 <td>Middle Name</td>
                 <td>Last Name</td>
                 <td>Gender</td>
-                <td>Year License Obtained</td>
                 <td>Average Rating</td>
                 <td>Number of Reviews</td>
                 <td>Profile</td>
@@ -70,9 +69,6 @@
                         </td>
                         <td>
                             <%=ds.getDoctor().getGender()%>
-                        </td>
-                        <td>
-                            <%=ds.getDoctor().getYearLicenseObtained()%>
                         </td>
                         <td>
                             <%=ds.getAverageRating()%>
