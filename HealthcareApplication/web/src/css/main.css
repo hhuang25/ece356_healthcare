@@ -466,14 +466,14 @@ textarea.review {
     .star-icon {
         font-size: 28px;
         line-height: 34px;
-        top: 3px;
+        top: 1px;
     }
     
     .star-icon.full:before {
-        top: 3px;
+        top: 1px;
     }
 
     .star-icon.half:before {
-        top: 3px;
+        top: 1px;
     }
 }
