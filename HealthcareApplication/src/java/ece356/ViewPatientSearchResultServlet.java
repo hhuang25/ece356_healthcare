@@ -114,7 +114,7 @@ public class ViewPatientSearchResultServlet extends HttpServlet {
                 PreparedStatement call_statement = null;
                 try{
                     
-                    if (friend_request.equals("Send Friend Request")) {
+                    if (friend_request.equals("Send Request")) {
                         call_statement = con.prepareCall(
                             "{call RequestFriend(?, ?)}"
                         );
@@ -127,7 +127,7 @@ public class ViewPatientSearchResultServlet extends HttpServlet {
                         );
                         call_statement.executeQuery();
 
-                    } else if (friend_request.equals("Confirm Friend Request")) {
+                    } else if (friend_request.equals("Confirm Request")) {
                         call_statement = con.prepareCall(
                             "{call ConfirmFriendsPatient(?, ?)}"
                         );
