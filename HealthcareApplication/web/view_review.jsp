@@ -13,20 +13,20 @@
 <!DOCTYPE html>
 <html>
     <body>
-        <div class="content">
+        <div class="content" style="text-align: center;">
             <% ReviewInfo review_info = (ReviewInfo) request.getAttribute("review_info"); %>
-            <%=review_info.getReview().getRating()%>
-            <%=review_info.getReview().getReview()%>
-            <%=review_info.getReview().getReviewDate()%>
-            <%=review_info.getDoctorName()%>
 
+            <h2>Review <%=review_info.getDoctorName()%></h2>
+            <p><%=review_info.getReview().getRating()%></p>
+            <p><%=review_info.getReview().getReview()%></p>
+            <p><%=review_info.getReview().getReviewDate()%></p>
             <form method="GET" action="ViewReview">
                 <% int previous_id = (Integer)request.getAttribute("previous_id"); %>
                 <input type="hidden" value="<%=previous_id%>" name="review_id">
                 <% if (previous_id == 0) { %>
-                    <input type="submit" value="Previous" name="submit" disabled>
+                    <input type="submit" class="button medium" value="Previous" name="submit" disabled style="margin-right: 10px;">
                 <% } else { %>
-                    <input type="submit" value="Previous" name="submit">
+                    <input type="submit" class="button medium" value="Previous" name="submit" style="margin-right: 10px;">
                 <% } %>
             </form>
 
@@ -34,9 +34,9 @@
                 <% int next_id = (Integer)request.getAttribute("next_id"); %>
                 <input type="hidden" value="<%=next_id%>" name="review_id">
                 <% if (next_id == 0) { %>
-                    <input type="submit" value="Next" name="submit" disabled>
+                    <input type="submit" value="Next" class="button medium" name="submit" disabled>
                 <% } else { %>
-                    <input type="submit" value="Next" name="submit">
+                    <input type="submit" value="Next" class="button medium" name="submit">
                 <% } %>
             </form>
         </div>
