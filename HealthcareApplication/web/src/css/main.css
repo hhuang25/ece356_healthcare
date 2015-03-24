@@ -30,6 +30,11 @@ fieldset {
     -webkit-border-radius: 8px;
 }
 
+textarea {
+    font-family: Verdana;
+    font-size: 14px;
+}
+
 div.content {
     min-height: 100%;
 }
@@ -58,7 +63,7 @@ div.footer {
     font-size: 20px;
     bottom: 0;
     height: 50px;
-    padding: 10px;
+    padding: 15px 10px 10px 10px;
 }
 
 div.logo {
@@ -174,8 +179,13 @@ input, select {
     padding-left: 10px;
 }
 
-input:hover, select:hover {
+input:hover, select:hover, textarea:hover {
     border: 1px solid #00CC99;
+}
+
+.radio-align {
+    position: relative;
+    top: 10px; 
 }
 
 ul.checkmark {
@@ -406,4 +416,21 @@ div.icon div.lines:before {
     width: 22px;
     position: absolute;
     top: 10px;
+}
+
+table.write-review-table {
+    table-layout: fixed;
+    width: 800px;    
+}
+
+table.write-review-table td:first-child {
+    width: 30%;
+}
+
+table.write-review-table td:last-child {
+    width: 70%;
+}
+
+textarea.review {
+    resize: none;
 }

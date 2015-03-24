@@ -50,8 +50,8 @@
                 <tr>
                     <td width="12%">Gender</td>
                     <td style="display: inline-block; margin-top: -10px;">
-                        <input name="gender" type="radio" value="male" style="position: relative; top: 10px;"> Male
-                        <input name="gender" type="radio" value="female" style="position: relative; top: 10px;"> Female
+                        <input name="gender" type="radio" value="male" class="radio-align"> Male
+                        <input name="gender" type="radio" value="female" class="radio-align"> Female
                     </td>
                 </tr>
                 </table>
