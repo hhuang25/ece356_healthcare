@@ -148,7 +148,11 @@ div.features {
     height: 40px;
     font-size: 20px;
 }
-
+.button.wide {
+    width: 240px;
+    height: 40px;
+    font-size: 20px;
+}
 .inverted-button {
     color: #00CC99;
     background: #FFF;
