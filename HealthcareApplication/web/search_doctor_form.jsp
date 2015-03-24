@@ -111,7 +111,6 @@
                                 <option>British Columbia</option>
                                 <option>Alberta</option>
                                 <option>Saskatchewan</option>
-                                <option>Winnipeg</option>
                                 <option>Manitoba</option>
                                 <option>Nova Scotia</option>
                                 <option>New Brunswick</option>
