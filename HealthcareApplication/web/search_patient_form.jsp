@@ -23,7 +23,7 @@
                 <div class="horizontal-center" style="width: 25%;">
                     <form action="ViewPatientSearchResult" method="GET">
                         <p>Username Contains</p>
-                        <input type="text" name="alias" size="45" maxlength="100">
+                        <input type="text" name="alias" size="45" maxlength="100" style="width: 333px;">
                         <p>City</p>
                         <select name="city" style="width: 347px;">
                             <option value="">Select One</option>
