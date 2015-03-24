@@ -41,28 +41,26 @@ public class ViewFriendRequests extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String url;
-        Connection con;  
         Patient logged_in_patient = (Patient)request.getSession().getAttribute(
                 "PatientSession"
         );
         
         if (logged_in_patient != null) {
-            try {
-                con = DbConnectionUtil.getConnection();
-                PreparedStatement call_statement = con.prepareCall(
+            try (Connection con = DbConnectionUtil.getConnection()){
+                try(PreparedStatement call_statement = con.prepareCall(
                         "{call GetFriendRequestUsers(?)}"
-                );
-                call_statement.setInt(1, logged_in_patient.getId());
-                ResultSet result_set = call_statement.executeQuery();
+                )){
+                    call_statement.setInt(1, logged_in_patient.getId());
+                    ResultSet result_set = call_statement.executeQuery();
 
-                ArrayList<User> users_request_friend = new ArrayList<User>();
-                while (result_set.next()) {
-                    User u = Factory.CreateUser(result_set);
-                    users_request_friend.add(u);
+                    ArrayList<User> users_request_friend = new ArrayList<User>();
+                    while (result_set.next()) {
+                        User u = Factory.CreateUser(result_set);
+                        users_request_friend.add(u);
+                    }
+                    request.setAttribute("users_request_friend", users_request_friend);
+                    url = "/view_friend_requests.jsp";
                 }
-                con.close();
-                request.setAttribute("users_request_friend", users_request_friend);
-                url = "/view_friend_requests.jsp";
 
             } catch (Exception e) {
                 request.setAttribute("exception", e);
@@ -93,16 +91,14 @@ public class ViewFriendRequests extends HttpServlet {
         );
         String url;
         int user_id = Integer.parseInt(request.getParameter("user_id"));
-        try {
-            Connection con = DbConnectionUtil.getConnection();
-            PreparedStatement call_statement = con.prepareCall(
+        try(Connection con = DbConnectionUtil.getConnection()) {
+            try(PreparedStatement call_statement = con.prepareCall(
                     "{call ConfirmFriends(?, ?)}"
-            );
-            call_statement.setInt(1, logged_in_patient.getId());
-            call_statement.setInt(2, user_id);
-            call_statement.executeQuery();
-                     
-            con.close();
+            )){
+                call_statement.setInt(1, logged_in_patient.getId());
+                call_statement.setInt(2, user_id);
+                call_statement.executeQuery();
+            }
             
         } catch (Exception e) {
             request.setAttribute("exception", e);

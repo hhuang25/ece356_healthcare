@@ -107,7 +107,7 @@ public class FindDoctorServlet extends HttpServlet {
             String streetNumber = request.getParameter("street_number").trim();
             String street = request.getParameter("street").trim();
             String postalCode = request.getParameter("postal_code").trim();
-            String yearLicenseObtained = request.getParameter("year_license_obtained").trim();
+            String yearLicenseObtained = request.getParameter("min_years_licensed").trim();
             String specializationName = request.getParameter("specialization");
             String ratingThreshold = request.getParameter("rating_threshold").trim();
             boolean friendsReviewed = (request.getParameter("friend_reviewed") != null);

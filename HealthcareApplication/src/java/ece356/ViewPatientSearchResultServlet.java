@@ -46,10 +46,8 @@ public class ViewPatientSearchResultServlet extends HttpServlet {
             "PatientSession"
         );
         
-        Connection con;
         String url;
-        try {
-            con = DbConnectionUtil.getConnection();
+        try(Connection con = DbConnectionUtil.getConnection()) {
             PreparedStatement call_statement = con.prepareCall(
                     "{call PatientSearch(?, ?, ?, ?)}"
             );
@@ -112,36 +110,41 @@ public class ViewPatientSearchResultServlet extends HttpServlet {
         );
         if (friend_request == null) { response.sendRedirect("/HealthcareApplication"); }
         else {
-            try {
-                Connection con = DbConnectionUtil.getConnection();
-                PreparedStatement call_statement;
-                if (friend_request.equals("Send Friend Request")) {
-                    call_statement = con.prepareCall(
-                        "{call RequestFriend(?, ?)}"
-                    );
-                    call_statement.setInt(1, logged_in_patient.getId());
-                    call_statement.setInt(
-                            2,
-                            Integer.parseInt(
-                                    request.getParameter("patient_id")
-                            )
-                    );
-                    call_statement.executeQuery();
+            try(Connection con = DbConnectionUtil.getConnection()) {
+                PreparedStatement call_statement = null;
+                try{
                     
-                } else if (friend_request.equals("Confirm Friend Request")) {
-                    call_statement = con.prepareCall(
-                        "{call ConfirmFriendsPatient(?, ?)}"
-                    );
-                    call_statement.setInt(1, logged_in_patient.getId());
-                    call_statement.setInt(
-                            2,
-                            Integer.parseInt(
-                                    request.getParameter("patient_id")
-                            )
-                    );
-                    call_statement.executeQuery();
+                    if (friend_request.equals("Send Friend Request")) {
+                        call_statement = con.prepareCall(
+                            "{call RequestFriend(?, ?)}"
+                        );
+                        call_statement.setInt(1, logged_in_patient.getId());
+                        call_statement.setInt(
+                                2,
+                                Integer.parseInt(
+                                        request.getParameter("patient_id")
+                                )
+                        );
+                        call_statement.executeQuery();
+
+                    } else if (friend_request.equals("Confirm Friend Request")) {
+                        call_statement = con.prepareCall(
+                            "{call ConfirmFriendsPatient(?, ?)}"
+                        );
+                        call_statement.setInt(1, logged_in_patient.getId());
+                        call_statement.setInt(
+                                2,
+                                Integer.parseInt(
+                                        request.getParameter("patient_id")
+                                )
+                        );
+                        call_statement.executeQuery();
+                    }
+                }finally{
+                    if(call_statement!= null){
+                        call_statement.close();
+                    }
                 }
-                con.close();
             } catch (Exception e) {
                 request.setAttribute("exception", e);
             }
