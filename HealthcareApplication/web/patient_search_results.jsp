@@ -60,11 +60,11 @@
                 %>
             <input type="hidden" value="<%=pr.getPatient().getId()%>" name="patient_id">
             <% if (pr.getStatus() == 0) { %>
-                <td><input type="submit" value="Send Friend Request" name="friend_request"></td>
+                <td><input type="submit" class="button wide" value="Send Friend Request" name="friend_request"></td>
             <% } else if (pr.getStatus() == 1) { %>
                 <td>Friend Request Sent</td>
             <% } else if (pr.getStatus() == 2) { %>
-                <td><input type="submit" value="Confirm Friend Request" name="friend_request"></td>
+                <td><input type="submit" class="button wide" value="Confirm Friend Request" name="friend_request"></td>
             <% } else { %>
                 <td><%=pr.getUser().getAlias()%> is your friend!</td>
             <% } %>
