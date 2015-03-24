@@ -25,7 +25,7 @@
                         <p>Username Contains</p>
                         <input type="text" name="alias" size="45" maxlength="100">
                         <p>City</p>
-                        <select name="city">
+                        <select name="city" style="width: 347px;">
                             <option value="">Select One</option>
                             <%! ArrayList<String> cities;%>
                             <%

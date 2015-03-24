@@ -88,7 +88,7 @@
                         <tr>
                             <td>City</td>
                             <td>
-                                <select name="city">
+                                <select name="city" style="width: 163px;">
                                     <option value="">Select One</option>
                                     <%! ArrayList<String> cities;%>
                                     <%
