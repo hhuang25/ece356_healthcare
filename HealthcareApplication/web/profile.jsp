@@ -154,7 +154,7 @@
                                 %>
                                     <tr>
                                         <td>
-                                            <b>Reviewed on <%=new SimpleDateFormat("MM/dd/yyyy").format(new Date(review.getReviewDate().getTime()))%></b>
+                                            <b>Reviewed on <%=new SimpleDateFormat("MM/dd/yyyy | h:mm a").format(new Date(review.getReviewDate().getTime()))%></b>
                                             <br/>Rated
                                             <div style="display: inline-block; margin-left: 15px;">
                                             <% 

@@ -160,7 +160,7 @@
                             <td width="12%">
                                 Average Rating Threshold</td>
                             <td>
-                                <select name="rating_threshold">
+                                <select name="rating_threshold" style="width: 160px;">
                                     <option>0</option>
                                     <option>0.5</option>
                                     <option>1.0</option>
