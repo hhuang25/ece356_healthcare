@@ -71,6 +71,11 @@ public class AuthenticationServlet extends HttpServlet {
                 url = "/login.jsp";
             }
             else {
+                HttpSession current = request.getSession(false);
+                if (current != null) {
+                    current.invalidate();
+                }
+
                 HttpSession session = request.getSession(true);
                 authenticateString = "SELECT * FROM User WHERE alias = ?";
                 authenticate = con.prepareStatement(authenticateString);
