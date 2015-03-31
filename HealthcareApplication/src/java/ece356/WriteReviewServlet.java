@@ -122,38 +122,34 @@ public class WriteReviewServlet extends HttpServlet {
         }
         
         if (errorMessage.length() == 0) {
-            Connection con = null;
-            PreparedStatement cs = null;
+            //Connection con = null;
+            //PreparedStatement cs = null;
             
             double ratingValue = Double.parseDouble(rating);
             int doctorId = Integer.parseInt(request.getParameter("doctorId"));
             int patientId = Integer.parseInt(request.getParameter("patientId"));
             
-            try {
-                con = DbConnectionUtil.getConnection();
-                cs = con.prepareCall("{call AddReview(?, ?, ?, ?)}");
-                cs.setInt(1, patientId);
-                cs.setInt(2, doctorId);
-                cs.setDouble(3, ratingValue);
-                cs.setString(4, review);
-                cs.executeQuery();
+            try(Connection con = DbConnectionUtil.getConnection()) {
+                con.setAutoCommit(false);
+                con.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
+                try(PreparedStatement cs = con.prepareCall("{call AddReview(?, ?, ?, ?)}")){
+                    cs.setInt(1, patientId);
+                    cs.setInt(2, doctorId);
+                    cs.setDouble(3, ratingValue);
+                    cs.setString(4, review);
+                    cs.executeQuery();
+                }catch(SQLException ex){
+                    con.rollback();
+                    con.setAutoCommit(true);
+                    throw ex;
+                }
+                con.commit();
+                con.setAutoCommit(true);
                 url = "/Profile?docId=" + doctorId;
                 success = true;
             } catch (SQLException | NamingException ex) {
                 request.setAttribute("exception", ex);
                 url = "/error.jsp";
-            }
-            finally {
-                if (cs != null) {
-                    try {
-                        cs.close();
-                    } catch (SQLException ex) {
-                        request.setAttribute("exception", ex);
-                        url = "/error.jsp";
-                    }
-                }
-                
-                DbConnectionUtil.closeConnection(con);
             }
         }
         
